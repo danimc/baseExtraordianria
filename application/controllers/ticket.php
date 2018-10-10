@@ -246,30 +246,15 @@ class Ticket extends CI_Controller {
  		  echo json_encode($msg);
 	}
 
-	function cambiar_categoria()
+	function folio_plataforma()
 	{
-		$categoria = $_POST['categoria'];
-		$folio = $_POST['folio'];
-		$antCategoria = $_POST['antCategoria'];
-		$fecha= $this->m_ticket->fecha_actual();
-		$hora= $this->m_ticket->hora_actual();
 
-		$msg = new \stdClass();
+		$datos['folio'] = $this->m_base->obtFolioPlataforma();
+		$folio = explode('/', $datos['folio']->folio);
+		$suma = $folio[1] + 0001;
 
-		if ($categoria != $antCategoria) {
-			$this->m_ticket->cambiar_categoria($folio, $categoria);
-			$this->m_ticket->h_cambiar_categoria($folio, $categoria, $fecha, $hora);
+		echo (addslashes( 'PLAT/'. $suma ) );
 
-			 $msg->id = 1;
-			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio la categoría</p></div>';
-		}else{
-
-			$msg->id = 2;
-			$msg->mensaje = '<div class="alert alert-danger"><p><i class="fa fa-close"></i> Seleccionaste la categoría actual</p></div>';
-			
-		}
-
-		echo json_encode($msg);
 	}
 
 	function cambiar_estatus()

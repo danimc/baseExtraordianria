@@ -1,4 +1,6 @@
 <script>
+
+
 function registro(){
         var parametros = {
                 "consecutivo" : $('#consecutivo').val(),
@@ -50,6 +52,21 @@ function registro(){
                 }
         });
 }
+
+function folioPlataforma()
+{
+     $.ajax({
+                //data:  parametros,
+                url:   'index.php?/ticket/folio_plataforma',
+                type:  'post',
+                beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                   $('#consecutivo').val(response);        
+                }
+        });
+}
 </script>
 
 <!-- Content Wrapper. Contains page content -->
@@ -83,8 +100,16 @@ function registro(){
                         <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>No. Consecutivo: </h4>
                         </div>
-                        <div class="form-group col-sm-2">                            
-                            <input  class="form-control" type="text" name="consecutivo" id="consecutivo" placeholder="">
+                        <div class="form-group col-sm-2">
+                         <div class="input-group">
+                <div class="input-group-btn">
+                  <button type="button" onclick="folioPlataforma();" class="btn btn-danger">Plataforma</button>
+                </div>
+                <!-- /btn-group -->
+                <input  class="form-control" type="text" name="consecutivo" id="consecutivo" placeholder="">
+              </div>                           
+                           
+
                         </div>
                         <div class="col-sm-2"></div>
                         <div align="right" class="col-sm-2">

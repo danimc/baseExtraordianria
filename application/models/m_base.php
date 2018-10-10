@@ -26,6 +26,19 @@ class m_base extends CI_Model {
         return $this->db->get('b_sexo')->result();
     }
 
+    function obtFolioPlataforma()
+    {
+
+        $qry = '';
+
+        $qry =   "SELECT max(consecutivo) as folio 
+                  FROM crm.b_registros 
+                  where consecutivo 
+                  like 'PLAT%'";
+
+        return $this->db->query($qry)->row();
+    }
+
     function registro_nuevo($datos) 
     {
     	$this->consecutivo         =	$datos['consecutivo']; 	
