@@ -23,6 +23,7 @@ class m_seguridad extends CI_Model {
 		$usuario = $this->session->userdata("codigo");
 		
 		$this->db->where("usuario",$usuario);
+		$this->db->where("sistema",2);
 		$this->db->where("modulo",$modulo);
 		return $this->db->get("accesos_modulos")->num_rows();    
     }

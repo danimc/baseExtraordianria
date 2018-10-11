@@ -74,28 +74,30 @@ function folioPlataforma()
             <a href="<?=base_url()?>index.php?/ticket/lista_registros" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
         <span id="resultado"></span>
           
-          <div class="row">
 
+            <div class="row">
             <div class="col-sm-12">
+               
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-tittle"> Datos Generales </h3>
                     </div>
                     <div class="box-body">
+                        <div class="row">
                         <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>No. Consecutivo: </h4>
                         </div>
-                        <div class="form-group col-sm-2">
-                                                 <div class="input-group">
-                <div class="input-group-btn">
-                  <button type="button" onclick="folioPlataforma();" class="btn btn-danger">Plataforma</button>
-                </div>
-                <!-- /btn-group -->
-                <input  class="form-control" type="text" value="<?=$registro->consecutivo?>" name="consecutivo" id="consecutivo" placeholder="">
-              </div>                             
+                        <div class="form-group col-sm-4">
+                            <div class="input-group">
+                            <div class="input-group-btn">
+                              <button type="button" onclick="folioPlataforma();" class="btn btn-danger">Plataforma</button>
+                            </div>
+                            <!-- /btn-group -->
+                            <input  class="form-control" type="text" value="<?=$registro->consecutivo?>" name="consecutivo" id="consecutivo">
+                          </div>                             
                             
                         </div>
-                        <div class="col-sm-2"></div>
+                       
                         <div align="right" class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Fecha: </h4>
                         </div>
@@ -103,26 +105,31 @@ function folioPlataforma()
                             
                             <input required="true" class="form-control" type="date" id="fecha" name="fecha" value="<?=$registro->fecha?>" placeholder="">
                         </div>
-                         <div class="col-sm-2">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Oficio No.</h4>
                         </div>
-                        <div class="form-group col-sm-3">                            
+                        <div class="form-group col-sm-4">                            
                         <input required="true" class="form-control" value="<?=$registro->oficio?>" type="text" name="oficio" id="oficio"  placeholder="">
                         </div>
-                        <div class="col-sm-1"></div>
+                     
                         <div align="right" class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Hora: </h4>
                         </div>
                         <div align="right" class="form-group col-sm-3">                            
                             <input required="true" value="<?=$registro->hora?>" class="form-control" type="time" name="hora" id="hora" value="" placeholder="">
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Remitente: </h4>
                         </div>
                         <div class="form-group col-sm-9">                            
                             <input required="true" class="form-control" value="<?=$registro->remitente?>" type="text" name="remitente" id="remitente"  placeholder="">
                         </div>
-
+                    </div>
+                        <div class="row">
 
                          <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Puesto: </h4>
@@ -130,36 +137,37 @@ function folioPlataforma()
                         <div class="form-group col-sm-9">                            
                             <input required="true" class="form-control" value="<?=$registro->puesto?>" type="text" name="puesto" id="puesto" placeholder="">
                         </div>
-
+                        </div>
+                        <div class="row">
                            <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Dependencia: </h4>
                         </div>
                         <div class="form-group col-sm-9">                            
                         <select class="form-control" name="dependencia" id="dependencia">
-                            <option value="<?=$registro->idDependencia?>"> <?=$registro->dependencia?> <option>
+                            <option value="<?=$registro->idDependencia?>"> <?=$registro->dependencia?> </option>
                             <? foreach ($centros as $centro) {?>
                                 <option value="<?=$centro->id?>"><?=$centro->nombre?></option>
                            <? }?>
                         </select>
-                        </div>  
-
+                        </div> 
                           </div>  
                 </div>
                 </div> 
-                   <div class="col-sm-6">
+            <div class="col-sm-6">
                 <div class="box box-danger">
                     <div class="box-header with-border">
                         <h3 class="box-tittle"> Denunciante </h3>
                     </div>
                     <div class="box-body">
-
+                        <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Nombre: </h4>
                         </div>
                         <div class="form-group col-sm-9">                            
                             <input required="true" class="form-control" value="<?=$registro->denunciante?>" type="text" name="denunciante" id="denunciante"  placeholder="">
                         </div>
-
+                        </div>
+                        <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Tipo: </h4>
                         </div>
@@ -171,6 +179,8 @@ function folioPlataforma()
                            <? }?>
                         </select>
                         </div>
+                    </div>
+                    <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Edad: </h4>
                         </div>
@@ -191,7 +201,8 @@ function folioPlataforma()
                                 <option value="<?=$s->id?>"><?=$s->nombre?></option>
                            <? }?>
                         </select>
-                        </div>   
+                        </div> 
+                        </div>  
  
                         </div>
                     </div>
@@ -204,13 +215,15 @@ function folioPlataforma()
                         <h3 class="box-tittle"> Denunciado </h3>
                     </div>
                     <div class="box-body">
-                          <div class="col-sm-3">
+                        <div class="row">
+                        <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Nombre: </h4>
                         </div>
                         <div class="form-group col-sm-9">                            
                             <input required="true" class="form-control" value="<?=$registro->denunciado?>" type="text" id="denunciado" name="denunciado"  placeholder="">
                         </div>
-
+                    </div>
+                    <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Tipo: </h4>
                         </div>
@@ -222,35 +235,37 @@ function folioPlataforma()
                            <? }?>
                         </select>
                         </div>
+                    </div>
+                    <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Edad: </h4>
                         </div>
-                        <div class="form-group col-sm-3">                            
-                        <select class="form-control" id="edadDenunciado" id="edadDenunciado" name="edadDenunciado">
-                            <option value="<?=$registro->edadDenunciado?>"><?=$registro->edadDenunciado?></option>  
-                            <option value="17">Menor de Edad</option>
-                            <option value="18"> +18 </option>
-                        </select>
-                        </div>  
+                            <div class="form-group col-sm-3">                            
+                                <select class="form-control" id="edadDenunciado" id="edadDenunciado" name="edadDenunciado">
+                                    <option value="<?=$registro->edadDenunciado?>"><?=$registro->edadDenunciado?></option>  
+                                    <option value="17">Menor de Edad</option>
+                                    <option value="18"> +18 </option>
+                                </select>
+                            </div>  
 
-                        <div class="col-sm-2">
-                            <h4><i class="fa fa-box"></i>Sexo: </h4>
+                            <div class="col-sm-2">
+                                <h4><i class="fa fa-box"></i>Sexo: </h4>
+                            </div>
+                                <div class="form-group col-sm-4">                            
+                                <select class="form-control" id="sexoDenunciado" name="sexoDenunciado">
+                                    <option value="<?=$registro->sexoDenunciado?>"><?=$registro->sexo2?></option>
+                                 <? foreach ($sexo as $s) {?>
+                                    <option value="<?=$s->id?>"><?=$s->nombre?></option>
+                               <? }?>
+                                </select>
+                                </div>   
+                             </div>
+                            </div>
                         </div>
-                        <div class="form-group col-sm-4">                            
-                        <select class="form-control" id="sexoDenunciado" name="sexoDenunciado">
-                            <option value="<?=$registro->sexoDenunciado?>"><?=$registro->sexo2?></option>
-                             <? foreach ($sexo as $s) {?>
-                                <option value="<?=$s->id?>"><?=$s->nombre?></option>
-                           <? }?>
-                        </select>
-                        </div>   
+                    </div>                
 
-                        </div>
-                        </div>
-                        </div>                
-
-
-                          <div class="col-sm-12">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
                 <div class="box box-success">
                    
                     <div class="box-body"> 
@@ -272,21 +287,23 @@ function folioPlataforma()
                      <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Resumen: </h4>
                         </div>
-                    <div class="box-body pad col-sm-8">
-                        <textarea  required="true" class="textarea" id="asunto" name="asunto" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 100px; font-size: 14px; line-height: 20px; border: 1px solid #dddddd; padding: 10px;"><?=$registro->asunto?></textarea>
-                        <div class="form-group">
-                            <hr>
-                            <button  id="btn" onclick="editado()" type="submit" class="btn btn-success">
-                                    <i class="fa fa-save"></i>
-                                    Editar Captura</button>
-                     
-                            <a class="btn btn-danger" href="/base">Cancelar</a>
-                            
+                        <div class="box-body pad col-sm-8">
+                            <textarea  required="true" class="textarea" id="asunto" name="asunto" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 100px; font-size: 14px; line-height: 20px; border: 1px solid #dddddd; padding: 10px;"><?=$registro->asunto?></textarea>
+                                <div class="form-group">
+                                    <hr>
+                                    <button  id="btn" onclick="editado()" type="submit" class="btn btn-success">
+                                            <i class="fa fa-save"></i>
+                                            Editar Captura</button>
+                             
+                                    <a class="btn btn-danger" href="/base">Cancelar</a>
+                                    
+                                </div>
                         </div>
-                    </div>
                       </div>  
                 </div>
                 </div>
+            </div>
+            </div>
             </section>
             </div>
 

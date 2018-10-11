@@ -13,6 +13,11 @@
 
           <!-- Main content -->
     <section class="content">
+           <?
+             $accesoActivos = $this->m_seguridad->acceso_modulo(1);
+             if ($accesoActivos != 0) {
+            ?>
+                  
             <a href="<?=base_url()?>index.php?/ticket/nuevo_registro">
               <div class="col-md-3 col-sm-6 col-xs-12">           
                 <div class="info-box bg-orange-active">
@@ -30,6 +35,7 @@
                 </div><!-- /.info-box -->
               </div>
             </a>
+            <?}?>
 
                         <a href="<?=base_url()?>index.php?/ticket/lista_registros">
               <div class="col-md-3 col-sm-6 col-xs-12">           

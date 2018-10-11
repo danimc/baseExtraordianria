@@ -64,8 +64,7 @@ function folioPlataforma()
                 },
                 success:  function (response) {
                    $('#consecutivo').val(response),   
-                   $('#oficio').val('PLATAFORMA'),
-                   $("#resultado").html("");     
+                   $('#oficio').val('PLATAFORMA'),                        
                 }
         });
 }

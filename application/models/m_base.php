@@ -26,6 +26,15 @@ class m_base extends CI_Model {
         return $this->db->get('b_sexo')->result();
     }
 
+    function obt_remitentes()
+    {
+        $qry = "";
+
+        $qry = "SELECT distinct(remitente) FROM crm.b_registros";
+
+        return $this->db->query($qry)->result();
+    }
+
     function obtFolioPlataforma()
     {
 
