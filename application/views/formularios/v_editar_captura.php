@@ -35,6 +35,23 @@ function editado(){
                 }
         });
 }
+
+function folioPlataforma()
+{
+     $.ajax({
+                //data:  parametros,
+                url:   'index.php?/ticket/folio_plataforma',
+                type:  'post',
+                beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                },
+                success:  function (response) {
+                   $('#consecutivo').val(response),   
+                   $('#oficio').val('PLATAFORMA'),   
+                   $("#resultado").html("");       
+                }
+        });
+}
 </script>
 
 <!-- Content Wrapper. Contains page content -->
@@ -68,8 +85,15 @@ function editado(){
                         <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>No. Consecutivo: </h4>
                         </div>
-                        <div class="form-group col-sm-2">                            
-                            <input  class="form-control" value="<?=$registro->consecutivo?>" type="text" name="consecutivo" id="consecutivo" placeholder="">
+                        <div class="form-group col-sm-2">
+                                                 <div class="input-group">
+                <div class="input-group-btn">
+                  <button type="button" onclick="folioPlataforma();" class="btn btn-danger">Plataforma</button>
+                </div>
+                <!-- /btn-group -->
+                <input  class="form-control" type="text" value="<?=$registro->consecutivo?>" name="consecutivo" id="consecutivo" placeholder="">
+              </div>                             
+                            
                         </div>
                         <div class="col-sm-2"></div>
                         <div align="right" class="col-sm-2">

@@ -60,10 +60,12 @@ function folioPlataforma()
                 url:   'index.php?/ticket/folio_plataforma',
                 type:  'post',
                 beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
+                      //  $("#resultado").html("Procesando, espere por favor...");
                 },
                 success:  function (response) {
-                   $('#consecutivo').val(response);        
+                   $('#consecutivo').val(response),   
+                   $('#oficio').val('PLATAFORMA'),
+                   $("#resultado").html("");     
                 }
         });
 }
@@ -97,60 +99,64 @@ function folioPlataforma()
                         <h3 class="box-tittle"> Datos Generales </h3>
                     </div>
                     <div class="box-body">
+                        <div class="row">
                         <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>No. Consecutivo: </h4>
                         </div>
-                        <div class="form-group col-sm-2">
+                        <div class="form-group col-sm-4">
                          <div class="input-group">
-                <div class="input-group-btn">
-                  <button type="button" onclick="folioPlataforma();" class="btn btn-danger">Plataforma</button>
-                </div>
-                <!-- /btn-group -->
-                <input  class="form-control" type="text" name="consecutivo" id="consecutivo" placeholder="">
-              </div>                           
-                           
-
+                            <div class="input-group-btn">
+                              <button type="button" onclick="folioPlataforma();" class="btn btn-danger">Plataforma</button>
+                            </div>
+                            <!-- /btn-group -->
+                            <input  class="form-control" type="text" name="consecutivo" id="consecutivo" placeholder="">
+                          </div>  
                         </div>
-                        <div class="col-sm-2"></div>
-                        <div align="right" class="col-sm-2">
-                            <h4><i class="fa fa-box"></i>Fecha: </h4>
-                        </div>
-                        <div align="right" class="form-group col-sm-3">
-                            
-                            <input required="true" class="form-control" type="date" id="fecha" name="fecha" value="<?=$fecha?>" placeholder="">
-                        </div>
-                         <div class="col-sm-2">
-                            <h4><i class="fa fa-box"></i>Oficio No.</h4>
-                        </div>
-                        <div class="form-group col-sm-3">                            
-                        <input required="true" class="form-control" type="text" name="oficio" id="oficio"  placeholder="">
-                        </div>
-                        <div class="col-sm-1"></div>
-                        <div align="right" class="col-sm-2">
-                            <h4><i class="fa fa-box"></i>Hora: </h4>
-                        </div>
-                        <div align="right" class="form-group col-sm-3">                            
-                            <input required="true" class="form-control" type="time" name="hora" id="hora" value="" placeholder="">
-                        </div>
-                        <div class="col-sm-2">
-                            <h4><i class="fa fa-box"></i>Remitente: </h4>
-                        </div>
-                        <div class="form-group col-sm-9">                            
-                            <input required="true" class="form-control" type="text" name="remitente" id="remitente"  placeholder="">
+                  
+                        <div align="" class="col-sm-2">
+                            <h4><i class="fa fa-box"></i>Fecha:</h4>
                         </div>
 
-
+                            <div align="" class="form-group col-sm-4">                            
+                                <input required="true" class="form-control" type="date" id="fecha" name="fecha" value="<?=$fecha?>" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
+                             <div class="col-sm-2">
+                                <h4><i class="fa fa-box"></i>Oficio No.</h4>
+                            </div>
+                            <div class="form-group col-sm-4">                            
+                            <input required="true" class="form-control" type="text" name="oficio" id="oficio"  placeholder="">
+                            </div>
+                            <div align="" class="col-sm-2">
+                                <h4><i class="fa fa-box"></i>Hora: </h4>
+                            </div>
+                            <div align="" class="form-group col-sm-4">                            
+                                <input required="true" class="form-control" type="time" name="hora" id="hora" value="" placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h4><i class="fa fa-box"></i>Remitente: </h4>
+                            </div>
+                            <div class="form-group col-sm-10">                            
+                                <input required="true" class="form-control" type="text" name="remitente" id="remitente"  placeholder="">
+                            </div>
+                        </div>
+                        <div class="row">
                          <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Puesto: </h4>
                         </div>
-                        <div class="form-group col-sm-9">                            
+                        <div class="form-group col-sm-10">                            
                             <input required="true" class="form-control" type="text" name="puesto" id="puesto" placeholder="">
                         </div>
+                    </div>
+                       <div class="row">
 
                            <div class="col-sm-2">
                             <h4><i class="fa fa-box"></i>Dependencia: </h4>
                         </div>
-                        <div class="form-group col-sm-9">                            
+                        <div class="form-group col-sm-10">                            
                         <select class="form-control" name="dependencia" id="dependencia">
                             <option value="0"> </option>
                             <? foreach ($centros as $centro) {?>
@@ -159,7 +165,8 @@ function folioPlataforma()
                         </select>
                         </div>  
 
-                          </div>  
+                          </div> 
+                          </div> 
                 </div>
                 </div> 
                    <div class="col-sm-6">
@@ -168,14 +175,15 @@ function folioPlataforma()
                         <h3 class="box-tittle"> Denunciante </h3>
                     </div>
                     <div class="box-body">
-
+                        <div class="row">
                          <div class="col-sm-3">
-                            <h4><i class="fa fa-box"></i>Nombre: </h4>
+                            <h4><i class="fa fa-box"></i>Nombre:</h4>
                         </div>
                         <div class="form-group col-sm-9">                            
                             <input required="true" class="form-control" type="text" name="denunciante" id="denunciante"  placeholder="">
                         </div>
-
+                    </div>
+                       <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Tipo: </h4>
                         </div>
@@ -187,6 +195,8 @@ function folioPlataforma()
                            <? }?>
                         </select>
                         </div>
+                    </div>
+                       <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Edad: </h4>
                         </div>
@@ -206,7 +216,7 @@ function folioPlataforma()
                            <? }?>
                         </select>
                         </div>   
- 
+                    </div>
                         </div>
                     </div>
                 </div> 
@@ -218,13 +228,15 @@ function folioPlataforma()
                         <h3 class="box-tittle"> Denunciado </h3>
                     </div>
                     <div class="box-body">
+                        <div class="row">
                           <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Nombre: </h4>
                         </div>
                         <div class="form-group col-sm-9">                            
                             <input required="true" class="form-control" type="text" id="denunciado" name="denunciado"  placeholder="">
                         </div>
-
+                        </div>
+                     <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Tipo: </h4>
                         </div>
@@ -236,6 +248,8 @@ function folioPlataforma()
                            <? }?>
                         </select>
                         </div>
+                    </div>
+                       <div class="row">
                          <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Edad: </h4>
                         </div>
@@ -256,14 +270,14 @@ function folioPlataforma()
                            <? }?>
                         </select>
                         </div>   
-
+</div>
                         </div>
                         </div>
                         </div>                
 
-
-                          <div class="col-sm-12">
-                <div class="box box-success">
+<div class="col-sm-1"></div>
+        <div class="col-sm-10" align="center">
+                <div align="" class="box box-success">
                    
                     <div class="box-body"> 
                     <!-- /.box-header -->
@@ -284,6 +298,7 @@ function folioPlataforma()
                         </div>
                     <div class="box-body pad col-sm-8">
                         <textarea  required="true" class="textarea" id="asunto" name="asunto" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 100px; font-size: 14px; line-height: 20px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <br><br>
                         <div class="form-group">
                             <button  id="btn" onclick="registro()" type="submit" class="btn btn-success">
                                     <i class="fa fa-save"></i>
