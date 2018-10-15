@@ -152,7 +152,8 @@
                                     <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="true">Laboral</a></li>
                                 </ul>
 
-    <!--##########################################TABS##################################################################-->                            
+    <!--##########################################TABS##################################################################
+             ##################################### AREA 1 ###################################################-->                            
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
 
@@ -191,32 +192,41 @@
                                             </tbody>
                                         </table>
 
-                  <?if($dependencia == 5){?>                      
+                  <?
+
+                  //if($dependencia == 5){?>                      
                     <form name="seguimiento" id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
-                    <textarea id="chat" required name="chat" class="form-control" placeholder="Seguimiento"></textarea>
+                    <div class="col-xs-2">
+                        <b>Oficio:</b>
+                    <input type="text" class="form-control" name="oficio">
+                    </div>
+                    <div class="col-xs-10">
+                      <b>Registro de Seguimiento:</b>
+                    <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+                    </div>
                     <input type="hidden" name="folio" value="<?=$folio?>">
-                    <input type="hidden" name="dependencia" value="<?=$dependencia
-                    ?>">
+                    <input type="hidden" name="dependencia" value="5">
                     <br>
                     <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
                   </form>
 
-                  <?}?>
+                  <?//}?>
 
                                     </div>
                                     <!-- /.tab-pane -->
-                                    <div class="tab-pane" id="tab_2">
-                                        <table id="example2" class="table  table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th width="10px">Oficio</th>
-                                                    <th>Fecha/Usuario</th>
-                                                    <th>Seguimiento</th>
+          <? #####################################AREA 2 ###################################################  ?>                                
+     <div class="tab-pane" id="tab_2">
+        <table id="example2" class="table  table-hover">
+        <thead>
+      <tr>
+        <th width="10px">Oficio</th>
+        <th>Fecha/Usuario</th>
+         <th>Seguimiento</th>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php 
+            </tr>
+        </thead>
+            <tbody>
+       <?php 
 
               foreach ($seguimiento as $mensaje){
                   $fecha = $this->m_ticket->fecha_text($mensaje->fecha); 
@@ -240,31 +250,38 @@
                                             </tbody>
                                         </table>
 
-                                                          <?if($dependencia == 8){?>                      
-                                        <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/mensaje">
-                                        <textarea id="chat" required name="chat" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+                                                          <?//if($dependencia == 8){?>                      
+                 <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
+                   <div class="col-xs-2">
+                        <b>Oficio:</b>
+                    <input type="text" class="form-control" name="oficio">
+                    </div>
+                    <div class="col-xs-10">
+                      <b>Registro de Seguimiento:</b>
+                    <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+                    </div>
                                         <input type="hidden" name="folio" value="<?=$folio?>">
-                                          <input type="hidden" name="dependencia" value="<?=$dependencia
-                    ?>">
+                                          <input type="hidden" name="dependencia" value="8">
                                         <br>
                                         <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
                                       </form>
 
-                  <?}?>
+                  <?//}?>
                                     </div>
+        <!-- #####################################AREA 3 ###################################################-->
                                     <!-- /.tab-pane -->
-                                    <div class="tab-pane " id="tab_3">
-                                        <table id="example3" class="table  table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th width="10px">Oficio</th>
-                                                    <th>Fecha/Usuario</th>
-                                                    <th>Seguimiento</th>
+            <div class="tab-pane " id="tab_3">
+                <table id="example3" class="table  table-hover">
+                    <thead>
+                        <tr>
+                            <th width="10px">Oficio</th>
+                             <th>Fecha/Usuario</th>
+                             <th>Seguimiento</th>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php 
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <?php 
 
               foreach ($seguimiento as $mensaje){
                   $fecha = $this->m_ticket->fecha_text($mensaje->fecha);
@@ -288,7 +305,7 @@
                                             </tbody>
                                         </table>
 
-                    <?if($dependencia == 7){?>       
+                    <?//if($dependencia == 7){?>       
                     <hr>               
                     <form  method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
                       <div class="col-xs-2">
@@ -300,13 +317,12 @@
                     <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
                     </div>
                     <input type="hidden" name="folio" value="<?=$folio?>">
-                      <input type="hidden" name="dependencia" value="<?=$dependencia
-                    ?>">
+                      <input type="hidden" name="dependencia" value="7">
                     <br>
                     <button type="submit" class="btn btn-success btn-xs-3"><i class="fa fa-comment"></i> Enviar Mensaje</button>
                     </form>
 
-                  <?}?>
+                  <?//}?>
                                     </div>
                                     <!-- /.tab-pane -->
                                 </div>

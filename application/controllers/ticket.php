@@ -89,7 +89,6 @@ class Ticket extends CI_Controller {
 		$folio = $this->uri->segment(3);
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
 		$datos['folio'] = $folio;
-
 		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['conceptos'] = $this->m_base->obt_conceptos();
 		$datos['sexo'] = $this->m_base->obt_sexo();
@@ -243,7 +242,14 @@ class Ticket extends CI_Controller {
 
 	    $msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Se ha Asignado con Exito</p></div>';
 
- 		  echo json_encode($msg);
+ 		  return json_encode($msg);
+	}
+
+	public function remitentes()
+	{
+		$remitente = $this->m_base->obt_remitentes();
+
+		echo json_encode($remitente);
 	}
 
 	function folio_plataforma()

@@ -117,9 +117,7 @@ class m_base extends CI_Model {
                 LEFT JOIN 
                 b_sexo x2 ON b.sexoDenunciado = x2.id
                 LEFT JOIN 
-                b_conceptoreporte c ON b.concepto = c.id
-                WHERE 
-                b.registrador = u.codigo";
+                b_conceptoreporte c ON b.concepto = c.id";
 
         return $this->db->query($qry)->result();
     }

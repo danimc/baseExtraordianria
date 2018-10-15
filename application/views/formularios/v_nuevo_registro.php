@@ -1,6 +1,31 @@
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+
+$( function(){
+            $.ajax({
+               
+                url:   'index.php?/ticket/remitentes',
+                type:  'post',
+                success:  function (response) {
+                        var respuesta = response
+                        $("#remitente").autocomplete({
+                          source: respuesta,
+    });               
+                }
+        });
+        //autocomplete
+                 
+
+});
+
+
+
+</script>
+
 <script>
-
-
 function registro(){
         var parametros = {
                 "consecutivo" : $('#consecutivo').val(),
@@ -64,11 +89,13 @@ function folioPlataforma()
                 },
                 success:  function (response) {
                    $('#consecutivo').val(response),   
-                   $('#oficio').val('PLATAFORMA'),                        
+                   $('#oficio').val('PLATAFORMA');                        
                 }
         });
 }
 </script>
+
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
