@@ -160,7 +160,7 @@
                                             <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
                                            </div>
                                            <div class="col-xs-6" align="right">
-                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalCategoria" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
                                                <?if ($registro->sancionColegiados == null) {?>
                                                   <span class="bg-danger"><b>Sin Definir</b></span>
                                                <?}
@@ -231,6 +231,20 @@
                                     <!-- /.tab-pane -->
           <? #####################################AREA 2 ###################################################  ?>                                
      <div class="tab-pane" id="tab_2">
+         <div class="col-xs-6 " >
+                                            <h4 align="left">Seguimiento del <b>Área Penal:</b></h4>
+                                           </div>
+                                           <div class="col-xs-6" align="right">
+                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalPenal" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                                               <?if ($registro->sancionPenal == null) {?>
+                                                  <span class="bg-danger"><b>Sin Definir</b></span>
+                                               <?}
+                                               else{?>
+                                                <span class="bg-red"><b><?=$registro->sancionPenal?></b></span>
+                                                <?}?>
+                                           </div>
+                                     <br><br><br>
+<hr class="bg-blue">
         <table id="example2" class="table  table-hover">
         <thead>
       <tr>
@@ -286,6 +300,20 @@
         <!-- #####################################AREA 3 ###################################################-->
                                     <!-- /.tab-pane -->
             <div class="tab-pane " id="tab_3">
+                <div class="col-xs-6 " >
+                                            <h4 align="left">Seguimiento del <b>Área Laboral:</b></h4>
+                                           </div>
+                                           <div class="col-xs-6" align="right">
+                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                                               <?if ($registro->sancionLaboral == null) {?>
+                                                  <span class="bg-danger"><b>Sin Definir</b></span>
+                                               <?}
+                                               else{?>
+                                                <span class="bg-red"><b><?=$registro->sancionLaboral?></b></span>
+                                                <?}?>
+                                           </div>
+                                     <br><br><br>
+            <hr class="bg-blue">
                 <table id="example3" class="table  table-hover">
                     <thead>
                         <tr>
@@ -359,7 +387,7 @@
 
 
         <form id="sancionColegiados">
-     <div class="modal fade" id="modalCategoria" role="dialog">
+     <div class="modal fade" id="modalColegiados" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header bg-red">
@@ -386,14 +414,107 @@
         </div>
       </div>
 </form>
+<!-- ####################################################################################################################-->
+
+ <form id="sancionPenal">
+     <div class="modal fade" id="modalPenal" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-red">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">¡Aplicar Sancion! </h4>
+            </div>
+            <div class="modal-body">
+              <p>Seleccione la Sanción correspondiente de la siguiente lista</p>
+                <select name="sancion" class="form-control">
+                  <option disabled>Selecciones una Sanción</option>
+                  <?
+                  foreach ($sanciones as $sancion) {?>
+                    <option value="<?=$sancion->id?>"><?=$sancion->nombre?></option>
+                           <?}?>         
+                </select>
+                <input type="hidden" name="dependencia" value="8"><!--ESTO CAMBIARA EN UN FUTURO!-->
+                <input type="hidden" name="folio" value="<?=$folio?>">
+                </div>
+              <div class="modal-footer">
+                <button type="button" id="penal"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+
+<!-- ####################################################################################################################-->
+
+ <form id="sancionLaboral">
+     <div class="modal fade" id="modalLaboral" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-red">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">¡Aplicar Sancion! </h4>
+            </div>
+            <div class="modal-body">
+              <p>Seleccione la Sanción correspondiente de la siguiente lista</p>
+                <select name="sancion" class="form-control">
+                  <option disabled>Selecciones una Sanción</option>
+                  <?
+                  foreach ($sanciones as $sancion) {?>
+                    <option value="<?=$sancion->id?>"><?=$sancion->nombre?></option>
+                           <?}?>         
+                </select>
+                <input type="hidden" name="dependencia" value="7"><!--ESTO CAMBIARA EN UN FUTURO!-->
+                <input type="hidden" name="folio" value="<?=$folio?>">
+                </div>
+              <div class="modal-footer">
+                <button type="button" id="laboral" class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
 
 
 
 
 
-        <script>
+<script>
     $("#colegiados").click(function(){
     var formulario = $("#sancionColegiados").serializeArray();
+    $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/asignar_sancion",
+      data: formulario,
+    }).done(function(respuesta){
+       $("#mensaje").html(respuesta.mensaje);
+       if (respuesta.id == 1) {
+
+        setTimeout('document.location.reload()',1000);
+       }     
+    });
+   });
+
+    $("#penal").click(function(){
+    var formulario = $("#sancionPenal").serializeArray();
+    $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/asignar_sancion",
+      data: formulario,
+    }).done(function(respuesta){
+       $("#mensaje").html(respuesta.mensaje);
+       if (respuesta.id == 1) {
+
+        setTimeout('document.location.reload()',1000);
+       }     
+    });
+   });
+
+      $("#laboral").click(function(){
+    var formulario = $("#sancionLaboral").serializeArray();
     $.ajax({
       type: "POST",
       dataType: 'json',

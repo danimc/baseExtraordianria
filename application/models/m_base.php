@@ -181,7 +181,7 @@ class m_base extends CI_Model {
                 LEFT JOIN 
                 b_sanciones sp ON sp.id = b.sancion_penal
                 LEFT JOIN 
-                b_sanciones sl ON sc.id = b.sancion_laboral
+                b_sanciones sl ON sl.id = b.sancion_laboral
                 WHERE 
                 b.registrador = u.codigo
                 AND
