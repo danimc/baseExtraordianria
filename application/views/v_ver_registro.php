@@ -156,7 +156,20 @@
              ##################################### AREA 1 ###################################################-->                            
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
-
+                                          <div class="col-xs-6 " >
+                                            <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
+                                           </div>
+                                           <div class="col-xs-6" align="right">
+                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalCategoria" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                                               <?if ($registro->sancionColegiados == null) {?>
+                                                  <span class="bg-danger"><b>Sin Definir</b></span>
+                                               <?}
+                                               else{?>
+                                                <span class="bg-red"><b><?=$registro->sancionColegiados?></b></span>
+                                                <?}?>
+                                           </div>
+                                     <br><br><br>
+<hr class="bg-blue">
                                         <table id="example1" class="table  table-hover">
                                             <thead>
                                                 <tr>
@@ -194,7 +207,9 @@
 
                   <?
 
-                  //if($dependencia == 5){?>                      
+                  //if($dependencia == 5){?>             
+                    
+
                     <form name="seguimiento" id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
                     <div class="col-xs-2">
                         <b>Oficio:</b>
@@ -341,6 +356,58 @@
 
 
         </div>
+
+
+        <form id="sancionColegiados">
+     <div class="modal fade" id="modalCategoria" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-red">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">¡Aplicar Sancion! </h4>
+            </div>
+            <div class="modal-body">
+              <p>Seleccione la Sanción correspondiente de la siguiente lista</p>
+                <select name="sancion" class="form-control">
+                  <option disabled>Selecciones una Sanción</option>
+                  <?
+                  foreach ($sanciones as $sancion) {?>
+                    <option value="<?=$sancion->id?>"><?=$sancion->nombre?></option>
+                           <?}?>         
+                </select>
+                <input type="hidden" name="dependencia" value="5"><!--ESTO CAMBIARA EN UN FUTURO!-->
+                <input type="hidden" name="folio" value="<?=$folio?>">
+                </div>
+              <div class="modal-footer">
+                <button type="button" id="colegiados"   class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+
+
+
+
+
+        <script>
+    $("#colegiados").click(function(){
+    var formulario = $("#sancionColegiados").serializeArray();
+    $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/asignar_sancion",
+      data: formulario,
+    }).done(function(respuesta){
+       $("#mensaje").html(respuesta.mensaje);
+       if (respuesta.id == 1) {
+
+        setTimeout('document.location.reload()',1000);
+       }     
+    });
+   });
+        </script>
         <script>
             $(function() {
                 // $("#example1").DataTable();

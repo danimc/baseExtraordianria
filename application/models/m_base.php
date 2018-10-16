@@ -26,6 +26,11 @@ class m_base extends CI_Model {
         return $this->db->get('b_sexo')->result();
     }
 
+    function obt_sanciones()
+    {
+        return $this->db->get('b_sanciones')->result();
+    }
+
     function obt_remitentes()
     {
         $qry = "";
@@ -151,7 +156,10 @@ class m_base extends CI_Model {
                 x2.nombre as sexo2,
                 b.sexoDenunciado,
                 b.concepto as idConcepto,
-                c.nombre as concepto
+                c.nombre as concepto,
+                sc.nombre as sancionColegiados,
+                sp.nombre as sancionPenal,
+                sl.nombre as sancionLaboral
                 FROM
                 b_registros b
                 LEFT JOIN
@@ -168,6 +176,12 @@ class m_base extends CI_Model {
                 b_sexo x2 ON b.sexoDenunciado = x2.id
                 LEFT JOIN 
                 b_conceptoreporte c ON b.concepto = c.id
+                LEFT JOIN 
+                b_sanciones sc ON sc.id = b.sancion_colegiados
+                LEFT JOIN 
+                b_sanciones sp ON sp.id = b.sancion_penal
+                LEFT JOIN 
+                b_sanciones sl ON sc.id = b.sancion_laboral
                 WHERE 
                 b.registrador = u.codigo
                 AND
@@ -200,6 +214,14 @@ class m_base extends CI_Model {
                 id = '$id'";
 
         return $this->db->query($qry)->row();
+    }
+
+    function asignar_sancion($folio, $sancion, $dep)
+    {
+        $this->db->set($dep, $sancion);
+        $this->db->where('id', $folio);
+
+        $this->db->update("b_registros");
     }
 }
 ?>

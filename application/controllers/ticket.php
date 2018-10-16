@@ -135,8 +135,9 @@ class Ticket extends CI_Controller {
 		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['conceptos'] = $this->m_base->obt_conceptos();
 		$datos['sexo'] = $this->m_base->obt_sexo();
+		$datos['sanciones'] = $this->m_base->obt_sanciones();
 		$datos['asignados'] = $this->m_ticket->obt_asignados();
-		$datos['categorias'] = $this->m_ticket->obt_categorias();
+
 		$datos['seguimiento'] = $this->m_ticket->obt_seguimiento($folio);
 		$datos['fecha'] = $this->m_ticket->fecha_text($fecha->fecha);
 
@@ -263,28 +264,32 @@ class Ticket extends CI_Controller {
 
 	}
 
-	function cambiar_estatus()
+	function asignar_sancion()
 	{
-		$estatus = $_POST['estado'];
-		$folio = $_POST['folio'];
-		$antStatus = $_POST['antStatus'];
-		$fecha= $this->m_ticket->fecha_actual();
-		$hora= $this->m_ticket->hora_actual();
+		$dependencia 		= $_POST['dependencia'];
+		$sancion 			= $_POST['sancion'];
+		$folio				= $_POST['folio'];
+		$usuario 			= $this->session->userdata('codigo');				
+		
 
+		if ($dependencia == 5) {
+			$dep = 'sancion_colegiados';			
+		}
+		if ($dependencia == 8) {
+			$dep = 'sancion_penal';	
+		}
+		if ($dependencia == 7) {
+			$dep = 'sancion_laboral';	
+		}
+		$this->m_base->asignar_sancion($folio, $sancion, $dep);
+		
+	
 		$msg = new \stdClass();
-
-		if ($estatus != $antStatus) {
-			$this->m_ticket->cambiar_estatus($folio, $estatus);
-			$this->m_ticket->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
+			//$this->m_ticket->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
 
 			 $msg->id = 1;
 			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio es estatus</p></div>';
-		}else{
-
-			$msg->id = 2;
-			$msg->mensaje = '<div class="alert alert-danger"><p><i class="fa fa-close"></i> Ha seleccionado el mismo estado del Ticket</p></div>';
-			
-		}
+		
 
 		echo json_encode($msg);
 
