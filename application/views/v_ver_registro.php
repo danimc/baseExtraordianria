@@ -74,7 +74,7 @@
                                 </h5>
                                 <hr>
 
-                                <h5><strong><i class="fa  fa-exclamation-circle margin-r-5"></i> Concepto: </strong>
+                                <h5><strong><i class="fa  fa-exclamation-circle margin-r-5"></i> Conducta: </strong>
                                     <?=$registro->concepto?>
                                 </h5>
                                 <hr>
@@ -91,7 +91,7 @@
                     <div class="col-md-5">
                         <div class="box box-success">
                             <div class="box-header with-border">
-                                <h4 class="box-tittle"> Datos Denunciante</h4>
+                                <h4 class="box-tittle"> Datos Victima</h4>
                             </div>
                             <div class="box-body">
                                 <h5><strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Nombre: </strong>

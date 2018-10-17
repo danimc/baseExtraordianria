@@ -80,7 +80,7 @@ function folioPlataforma()
                
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-tittle"> Datos Generales </h3>
+                        <h3 class="box-tittle"> Denunciante</h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -156,7 +156,7 @@ function folioPlataforma()
             <div class="col-sm-6">
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-tittle"> Denunciante </h3>
+                        <h3 class="box-tittle"> Victima </h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -271,7 +271,7 @@ function folioPlataforma()
                     <div class="box-body"> 
                     <!-- /.box-header -->
                         <div class="col-sm-3">
-                            <h4><i class="fa fa-box"></i>Concepto: </h4>
+                            <h4><i class="fa fa-box"></i>Conducta: </h4>
                         </div>
                         <div class="form-group col-sm-7">                            
                             <select class="form-control" id="concepto" name="concepto">

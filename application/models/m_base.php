@@ -35,9 +35,22 @@ class m_base extends CI_Model {
     {
         $qry = "";
 
-        $qry = "SELECT distinct(remitente) FROM crm.b_registros";
+        $qry = "SELECT
+                 distinct(remitente) 
+                 FROM crm.b_registros
+                 WHERE remitente != '' 
+                 OR remitente IS NOT NULL";
 
-        return $this->db->query($qry)->result();
+        $remitente = $this->db->query($qry)->result();
+
+        $array = array();
+
+        foreach ($remitente as $rem) {
+            $array[] = 
+                $rem->remitente;
+        }
+
+        return json_encode($array);
     }
 
     function obtFolioPlataforma()

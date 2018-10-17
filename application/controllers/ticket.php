@@ -26,6 +26,8 @@ class Ticket extends CI_Controller {
 		$datos['fecha']	= date('Y-m-d');
 		$datos['hora']	= date('H:i:s');
 		$datos['centros'] = $this->m_base->obt_centros();
+		$datos['remitentes'] = $this->m_base->obt_remitentes();
+		//die(var_dump($datos['remitentes']));
 		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['conceptos'] = $this->m_base->obt_conceptos();
 		$datos['sexo'] = $this->m_base->obt_sexo();
@@ -244,13 +246,6 @@ class Ticket extends CI_Controller {
 	    $msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Se ha Asignado con Exito</p></div>';
 
  		  return json_encode($msg);
-	}
-
-	public function remitentes()
-	{
-		$remitente = $this->m_base->obt_remitentes();
-
-		echo json_encode($remitente);
 	}
 
 	function folio_plataforma()
