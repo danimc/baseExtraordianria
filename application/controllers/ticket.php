@@ -27,7 +27,8 @@ class Ticket extends CI_Controller {
 		$datos['hora']	= date('H:i:s');
 		$datos['centros'] = $this->m_base->obt_centros();
 		$datos['remitentes'] = $this->m_base->obt_remitentes();
-		//die(var_dump($datos['remitentes']));
+		$datos['victimas'] = $this->m_base->obt_victimas();
+		$datos['denunciados'] = $this->m_base->obt_denunciados();
 		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['conceptos'] = $this->m_base->obt_conceptos();
 		$datos['sexo'] = $this->m_base->obt_sexo();

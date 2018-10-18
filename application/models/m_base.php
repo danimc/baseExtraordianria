@@ -39,17 +39,52 @@ class m_base extends CI_Model {
                  distinct(remitente) 
                  FROM crm.b_registros
                  WHERE remitente != '' 
-                 OR remitente IS NOT NULL";
+                 AND remitente IS NOT NULL";
 
         $remitente = $this->db->query($qry)->result();
-
         $array = array();
-
         foreach ($remitente as $rem) {
             $array[] = 
                 $rem->remitente;
         }
+        return json_encode($array);
+    }
 
+        function obt_victimas()
+    {
+        $qry = "";
+
+        $qry = "SELECT
+                 distinct(denunciante) 
+                 FROM crm.b_registros
+                 WHERE denunciante != '' 
+                 AND denunciante IS NOT NULL";
+
+        $remitente = $this->db->query($qry)->result();
+        $array = array();
+        foreach ($remitente as $rem) {
+            $array[] = 
+                $rem->denunciante;
+        }
+        return json_encode($array);
+    }
+
+        function obt_denunciados()
+    {
+        $qry = "";
+
+        $qry = "SELECT
+                 distinct(denunciado) 
+                 FROM crm.b_registros
+                 WHERE denunciado != '' 
+                 AND denunciado IS NOT NULL";
+
+        $remitente = $this->db->query($qry)->result();
+        $array = array();
+        foreach ($remitente as $rem) {
+            $array[] = 
+                $rem->denunciado;
+        }
         return json_encode($array);
     }
 

@@ -7,9 +7,17 @@
 
     $( function(){
         var remi = <?=$remitentes?>;
-        console.log(remi);
+        var victima = <?=$victimas?>;
+        var denunciado = <?=$denunciados?>;
+        console.log(denunciado);
         $("#remitente").autocomplete({
             source: remi
+        });
+        $("#denunciante").autocomplete({
+            source: victima
+        });
+        $("#denunciado").autocomplete({
+            source: denunciado
         });
     });
     </script>
