@@ -35,6 +35,63 @@ class m_inicio extends CI_Model {
 		return $this->db->query($qry)->result();
     }
 
+    function obt_conceptos()
+    {
+        $qry = '';
+
+        $qry ="SELECT nombre from b_conceptoreporte ORDER BY nombre ASC";
+
+        $conceptos = $this->db->query($qry)->result();
+
+        $array = array();
+        foreach ($conceptos as $concepto) {
+            $array[] = 
+                $concepto->nombre;
+        }
+        return json_encode($array);
+    }
+
+    function obt_contador_conducta()
+    {
+        $qry = '';
+
+        $qry = 'SELECT 
+                nombre,
+                count(c.conducta) as contador
+                from 
+                b_conceptoreporte r
+                LEFT JOIN 
+                b_conductas c ON c.conducta = r.id
+                group by nombre';
+
+        $conceptos = $this->db->query($qry)->result();
+
+        $array = array();
+        foreach ($conceptos as $cuenta) {
+            $array[] = 
+                $cuenta->contador;
+        }
+        return json_encode($array);
+
+
+    }
+
+    function obt_conducta()
+    {
+        $qry = '';
+
+        $qry = 'SELECT 
+                nombre,
+                count(c.conducta) as contador
+                from 
+                b_conceptoreporte r
+                LEFT JOIN 
+                b_conductas c ON c.conducta = r.id
+                group by nombre';
+
+        return $this->db->query($qry)->result();
+    }
+
       function etiqueta($estatus)
     {
         if($estatus == 1){

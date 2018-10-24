@@ -69,7 +69,7 @@ class Ticket extends CI_Controller {
 
 
 		$respuesta = $this->m_base->registro_nuevo($datos);
-		$this->db->close();
+		
 		echo 'registro ' .$respuesta . 'contador: ';
 		echo $contador;
 

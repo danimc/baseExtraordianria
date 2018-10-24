@@ -43,13 +43,15 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
         <link rel="stylesheet" href="<?=base_url()?>src/css/bootstrap-select.min.css">
 
         <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
-       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
         <script >
             $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
 });
         </script>
+
+
     </head>      
 
     <?php

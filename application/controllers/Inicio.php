@@ -9,13 +9,16 @@ class Inicio extends CI_Controller {
 		$this->load->model('m_seguridad',"",TRUE);
 		$this->load->model('m_usuario',"",TRUE);
 		$this->load->model('m_inicio',"",TRUE);
+		$this->load->model('m_base',"",TRUE);
 	}
 
 	public function index()
 	{
 		$codigo = $this->session->userdata("codigo");	
 		$datos['usuario'] = $this->m_usuario->obt_usuario($codigo);
-		$datos['tPendientes'] = $this->m_inicio->tickets_pendientes_sis($codigo);
+		$datos['conceptos'] = $this->m_inicio->obt_conceptos();
+		$datos['contador'] = $this->m_inicio->obt_contador_conducta();
+		$datos['conductas'] = $this->m_inicio->obt_conducta();
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');

@@ -13,6 +13,7 @@
 
           <!-- Main content -->
     <section class="content">
+      <div class="row">
            <?
              $accesoActivos = $this->m_seguridad->acceso_modulo(1);
              if ($accesoActivos != 0) {
@@ -54,8 +55,117 @@
                 </div><!-- /.info-box -->
               </div>
             </a>
-
           
-          </section>
-        </div>
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Registros por Conducta</h3>
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-wrench"></i></button>
+                  
+                </div>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="text-center">
+                    <strong>REGISTROS CAPTURADOS 2018</strong>
+                  </p>
+
+                  <div class="chart">
+                    <!-- Sales Chart Canvas -->
+                    <canvas id="myChart" ></canvas>
+                  </div>
+                  <!-- /.chart-responsive -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-4">
+                  <p class="text-center">
+                    <strong>Numerico</strong>
+                  </p>
+                  <?
+                  foreach ($conductas as $conducta) {?>
+                 
+              
+                  <div class="progress-group col-md-6">
+                    <span class="progress-text"><?=$conducta->nombre?>:</span>
+                    <span class="progress-number"><b><?=$conducta->contador?></b></span>
+
+                    <div class="progress sm">
+                      <div class="progress-bar progress-bar-aqua" style="width: 100%"></div>
+                    </div>
+                  </div>
+                <? } ?>
+                  <!-- /.progress-group -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- ./box-body -->
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+     </section>
+
+ 
+</div>
+<script>
+var conceptos = <?=$conceptos?>;
+var datos = <?=$contador?>;
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: conceptos,
+        datasets: [{
+            label: '# de registros',
+            data: datos,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(25, 159, 64, 0.2)',
+                'rgba(255, 15, 164, 0.2)',
+                'rgba(100, 150, 50, 0.2)',
+                'rgba(100, 50, 100, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(25, 159, 64, 1)',
+                'rgba(255, 15, 164, 1)',
+                'rgba(100, 150, 50, 1)',
+                'rgba(100, 50, 100, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
