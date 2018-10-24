@@ -307,12 +307,13 @@ function folioPlataforma()
                             <h4><i class="fa fa-box"></i>Conducta: </h4>
                         </div>
                         <div class="form-group col-sm-7">                            
-                            <select class="form-control" id="concepto" name="concepto">
+                            <select class="js-example-basic-multiple form-control" id="concepto" name="concepto" multiple="multiple" >
                             <option value="0"> </option>
                             <? foreach ($conceptos as $concepto) {?>
                                 <option value="<?=$concepto->id?>"><?=$concepto->nombre?></option>
                            <? }?>
                         </select>
+                 
                         </div>
 
                      <div class="col-sm-3">
@@ -354,6 +355,8 @@ function folioPlataforma()
       </div>
 
       </div>
+
+
 
 <!-- /.content -->
 

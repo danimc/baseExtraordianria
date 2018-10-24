@@ -20,7 +20,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> Base Extraordinaria</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<?=base_url()?>src/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -35,11 +35,22 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
         <link rel="stylesheet" href="<?=base_url()?>src/css/icheck/blue.css">
         <!-- Tablas -->
         <link rel="stylesheet" href="<?=base_url()?>src/css/dataTables.bootstrap.css">
+        <!-- selec2 -->
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>src/css/bootstrap3-wysihtml5.css">
 
+        <link rel="stylesheet" href="<?=base_url()?>src/css/bootstrap-select.min.css">
+
         <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
-    </head>    
+       
+
+        <script >
+            $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+        </script>
+    </head>      
 
     <?php
     $controlador = $this->uri->segment(1);

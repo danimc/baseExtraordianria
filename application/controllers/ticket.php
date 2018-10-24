@@ -44,6 +44,10 @@ class Ticket extends CI_Controller {
 
 		function registro()
 	{
+
+		$conceptos = $_POST['concepto'];
+		$contador = count($conceptos);
+
 		
 		$datos['registrador'] 		= $this->session->userdata("codigo");
 		$datos['consecutivo'] 		= $_POST['consecutivo'];
@@ -51,26 +55,33 @@ class Ticket extends CI_Controller {
 		$datos['hora'] 				= $_POST['hora'];
 		$datos['oficio']			= $_POST['oficio'];
 		$datos['remitente'] 		= $_POST['remitente'];
-
 		$datos['denunciante'] 		= $_POST['denunciante'];
 		$datos['sujetoDenunciante']	= $_POST['sujetoDenunciante'];
 		$datos['edadDenunciante']	= $_POST['edadDenunciante'];
 		$datos['sexoDenunciante']	= $_POST['sexoDenunciante'];
-
 		$datos['denunciado']		= $_POST['denunciado'];
 		$datos['sujetoDenunciado']	= $_POST['sujetoDenunciado'];
 		$datos['edadDenunciado']	= $_POST['edadDenunciado'];
 		$datos['sexoDenunciado']	= $_POST['sexoDenunciado'];
-
 		$datos['dependencia'] 		= $_POST['dependencia'];
 		$datos['puesto'] 			= $_POST['puesto'];
-		$datos['concepto']			= $_POST['concepto'];
 		$datos['asunto']			= $_POST['asunto'];
 
 
-		//$this->m_base->nuevo_denunciado()
-
 		$respuesta = $this->m_base->registro_nuevo($datos);
+		$this->db->close();
+		echo 'registro ' .$respuesta . 'contador: ';
+		echo $contador;
+
+		if ($respuesta != 0) {
+			$i = 0;
+			while ( $i < $contador)  {
+				$this->m_base->registrar_conductas($respuesta, $conceptos[$i]);
+				$i++;
+			}
+			
+		}
+		
 
 		if ($respuesta != 0) {
 				$msg = '<div class="alert alert-success alert-dismissible">

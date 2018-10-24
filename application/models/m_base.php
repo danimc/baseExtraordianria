@@ -103,6 +103,7 @@ class m_base extends CI_Model {
 
     function registro_nuevo($datos) 
     {
+
     	$this->consecutivo         =	$datos['consecutivo']; 	
 		$this->fecha               =	$datos['fecha']; 			
 		$this->hora 		       =	$datos['hora']; 			
@@ -123,11 +124,25 @@ class m_base extends CI_Model {
 		$this->puesto 		       =	$datos['puesto']; 		
 		$this->asunto 		       =	$datos['asunto'];
 		$this->registrador 	       = 	$datos['registrador'];
-        $this->concepto            =    $datos['concepto'];
+       // $this->concepto            =    $datos['concepto'];
 
 		$this->db->insert("b_registros", $this);
+        $id = $this->db->insert_id();
+        $this->db->close();
 
-        return $this->db->affected_rows();
+        return $id;
+
+        
+
+    }
+
+    function registrar_conductas($registro, $key)
+    {
+        $qry = "";
+
+        $qry = "INSERT INTO b_conductas (registro, conducta) VALUES ($registro, $key)";
+
+        $this->db->query($qry);
 
     }
 
@@ -154,7 +169,8 @@ class m_base extends CI_Model {
                 su2.nombre as sujeto2,
                 b.edadDenunciado,
                 x2.nombre,
-                c.nombre as concepto
+                GROUP_CONCAT( c.nombre 
+                    SEPARATOR ', ') as concepto
                 FROM
                 b_registros b
                 LEFT JOIN
@@ -170,7 +186,10 @@ class m_base extends CI_Model {
                 LEFT JOIN 
                 b_sexo x2 ON b.sexoDenunciado = x2.id
                 LEFT JOIN 
-                b_conceptoreporte c ON b.concepto = c.id";
+                b_conductas conducta ON conducta.registro = b.id
+                LEFT JOIN 
+                b_conceptoreporte c ON c.id = conducta.conducta
+                group by b.id";
 
         return $this->db->query($qry)->result();
     }

@@ -31,9 +31,16 @@
 
         <script src="<?=base_url()?>src/js/dataTables.bootstrap.min.js"></script>
 
+        <script src="<?=base_url()?>src/js/wys.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+
+
     </body>
 
     <script>
+
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({

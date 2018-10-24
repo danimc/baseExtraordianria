@@ -36,7 +36,7 @@ $estados = $this->m_ticket->estatus();
               <th>Remitente</th>
               <th>Denunciante</th>
               <th>Denunciado</th>
-              <th>Concepto</th>
+              <th>Conducta(s)</th>
               <th>Asunto</th>
               <th>Acciones</th>
 
