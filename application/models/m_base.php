@@ -169,6 +169,9 @@ class m_base extends CI_Model {
                 su2.nombre as sujeto2,
                 b.edadDenunciado,
                 x2.nombre,
+                sancionP.nombre as sancionP,
+                sancionL.nombre as sancionL,
+                sancionC.nombre as sancionC,
                 GROUP_CONCAT( c.nombre 
                     SEPARATOR ', ') as concepto
                 FROM
@@ -189,6 +192,12 @@ class m_base extends CI_Model {
                 b_conductas conducta ON conducta.registro = b.id
                 LEFT JOIN 
                 b_conceptoreporte c ON c.id = conducta.conducta
+                LEFT JOIN 
+                b_sanciones sancionP ON sancionP.id = b.sancion_penal
+                LEFT JOIN 
+                b_sanciones sancionL ON sancionL.id = b.sancion_laboral
+                LEFT JOIN 
+                b_sanciones sancionC ON sancionC.id = b.sancion_colegiados 
                 group by b.id";
 
         return $this->db->query($qry)->result();
@@ -223,7 +232,8 @@ class m_base extends CI_Model {
                 x2.nombre as sexo2,
                 b.sexoDenunciado,
                 b.concepto as idConcepto,
-                c.nombre as concepto,
+                GROUP_CONCAT( c.nombre 
+                    SEPARATOR ', ') as concepto,
                 sc.nombre as sancionColegiados,
                 sp.nombre as sancionPenal,
                 sl.nombre as sancionLaboral
@@ -242,17 +252,20 @@ class m_base extends CI_Model {
                 LEFT JOIN 
                 b_sexo x2 ON b.sexoDenunciado = x2.id
                 LEFT JOIN 
-                b_conceptoreporte c ON b.concepto = c.id
-                LEFT JOIN 
                 b_sanciones sc ON sc.id = b.sancion_colegiados
                 LEFT JOIN 
                 b_sanciones sp ON sp.id = b.sancion_penal
                 LEFT JOIN 
                 b_sanciones sl ON sl.id = b.sancion_laboral
+                LEFT JOIN 
+                b_conductas conducta ON conducta.registro = b.id
+                LEFT JOIN 
+                b_conceptoreporte c ON c.id = conducta.conducta
                 WHERE 
                 b.registrador = u.codigo
                 AND
-                b.id = $id";
+                b.id = $id
+                group by b.id";
 
         return $this->db->query($qry)->row();
     }

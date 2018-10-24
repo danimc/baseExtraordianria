@@ -70,7 +70,9 @@ function registro(){
                     $('#dependencia').val(''),
                     $('#puesto').val(''),
                     $('#concepto').val(''),
-                    $('#asunto').val('')                    
+                    $('#asunto').val(''),
+
+                    setTimeout('document.location.reload()',1000);                    
                 }
         });
 }

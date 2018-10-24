@@ -37,7 +37,7 @@ $estados = $this->m_ticket->estatus();
               <th>Denunciante</th>
               <th>Denunciado</th>
               <th>Conducta(s)</th>
-              <th>Asunto</th>
+              <th>Sanciones</th>
               <th>Acciones</th>
 
             </tr>
@@ -68,10 +68,21 @@ $estados = $this->m_ticket->estatus();
 
               </td>
               <td ><?=$registro->concepto?></td>
-              <td ><?=$registro->asunto?></td>
-
-
-          <td width="10px" align="center">
+              <td ><?
+                      if($registro->sancionP != NULL){
+                        echo "<p class=''><b>Penal: </b>" . $registro->sancionP . "</p>";
+                      }
+                      if($registro->sancionL != NULL){
+                        echo "<p class=''><b>Laboral: </b>" . $registro->sancionL . "</p>";
+                      }
+                      if($registro->sancionC != NULL){
+                        echo "<p class=''><b>Colegiados: </b>" . $registro->sancionC . "<br>";
+                      }
+                      if($registro->sancionP == NULL && $registro->sancionL == NULL && $registro->sancionC == NULL) {
+                        echo "En Proceso";
+                      }
+                        ?></td>
+              <td width="10px" align="center">
          <?
              $accesoActivos = $this->m_seguridad->acceso_modulo(1);
              if ($accesoActivos != 0) {
