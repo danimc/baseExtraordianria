@@ -39,7 +39,15 @@ class m_inicio extends CI_Model {
     {
         $qry = '';
 
-        $qry ="SELECT nombre from b_conceptoreporte ORDER BY nombre ASC";
+        $qry ="SELECT 
+                nombre,
+                count(c.conducta) as contador
+                from 
+                b_conceptoreporte r
+                LEFT JOIN 
+                b_conductas c ON c.conducta = r.id
+                group by nombre
+                HAVING COUNT(c.conducta) > 0";
 
         $conceptos = $this->db->query($qry)->result();
 
@@ -62,7 +70,8 @@ class m_inicio extends CI_Model {
                 b_conceptoreporte r
                 LEFT JOIN 
                 b_conductas c ON c.conducta = r.id
-                group by nombre';
+                group by nombre
+                HAVING COUNT(c.conducta) > 0';
 
         $conceptos = $this->db->query($qry)->result();
 
@@ -87,7 +96,8 @@ class m_inicio extends CI_Model {
                 b_conceptoreporte r
                 LEFT JOIN 
                 b_conductas c ON c.conducta = r.id
-                group by nombre';
+                group by nombre
+                HAVING COUNT(c.conducta) > 0';
 
         return $this->db->query($qry)->result();
     }
