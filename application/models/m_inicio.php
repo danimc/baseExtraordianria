@@ -85,6 +85,38 @@ class m_inicio extends CI_Model {
 
     }
 
+    function obt_registros()
+    {
+        return $this->db->get("b_registros")->num_rows();
+    }
+
+    function cont_multiples_conductas()
+    {
+        $qry = "";
+
+        $qry = "SELECT
+                count(*) as cuenta
+                from 
+                b_conductas
+                GROUP BY registro
+                HAVING cuenta > 1";
+
+        return $this->db->query($qry)->num_rows();
+    }
+    function cont_una_conducta()
+    {
+        $qry = "";
+
+        $qry = "SELECT
+                count(*) as cuenta
+                from 
+                b_conductas
+                GROUP BY registro
+                HAVING cuenta = 1";
+
+        return $this->db->query($qry)->num_rows();
+    }
+
     function obt_conducta()
     {
         $qry = '';

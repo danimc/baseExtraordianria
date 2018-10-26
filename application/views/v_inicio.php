@@ -111,6 +111,39 @@
               <!-- /.row -->
             </div>
             <!-- ./box-body -->
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 col-xs-6">
+                  <div class="description-block border-right">
+                    
+                    <h5 class="description-header">TOTAL DE REGISTROS CAPTURADOS</h5>
+                    <span class="description-text"><?=$totalRegistros?></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 col-xs-6">
+                  <div class="description-block border-right">
+                    
+                    <h5 class="description-header">REGISTROS CON MULTIPLES CONDUCTAS</h5>
+                    <span class="description-text"><?=$multiple?></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 col-xs-6">
+                  <div class="description-block border-right">
+               
+                    <h5 class="description-header">REGISTROS CON SOLO UNA CONDUCTA</h5>
+                    <span class="description-text"><?=$una?></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+         
+              </div>
+              <!-- /.row -->
+            </div>
             <!-- /.box-footer -->
           </div>
           <!-- /.box -->

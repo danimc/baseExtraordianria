@@ -19,6 +19,9 @@ class Inicio extends CI_Controller {
 		$datos['conceptos'] = $this->m_inicio->obt_conceptos();
 		$datos['contador'] = $this->m_inicio->obt_contador_conducta();
 		$datos['conductas'] = $this->m_inicio->obt_conducta();
+		$datos['totalRegistros'] = $this->m_inicio->obt_registros();
+		$datos['multiple'] = $this->m_inicio->cont_multiples_conductas();
+		$datos['una'] = $this->m_inicio->cont_una_conducta();
 
 		$this->load->view('_encabezado');
 		$this->load->view('_menuLateral');
