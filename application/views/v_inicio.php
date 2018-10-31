@@ -38,7 +38,7 @@
             </a>
             <?}?>
 
-                        <a href="<?=base_url()?>index.php?/ticket/lista_registros">
+            <a href="<?=base_url()?>index.php?/ticket/lista_registros">
               <div class="col-md-3 col-sm-6 col-xs-12">           
                 <div class="info-box bg-blue-active">
                   <span class="info-box-icon"><i class="fa fa-list"></i></span>
@@ -55,7 +55,8 @@
                 </div><!-- /.info-box -->
               </div>
             </a>
-          
+          </div>
+          <div class="row">
         <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
@@ -82,7 +83,7 @@
 
                   <div class="chart">
                     <!-- Sales Chart Canvas -->
-                    <canvas id="myChart" ></canvas>
+                    <canvas id="myChart" height="300" ></canvas>
                   </div>
                   <!-- /.chart-responsive -->
                 </div>

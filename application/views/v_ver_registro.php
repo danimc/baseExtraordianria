@@ -156,7 +156,7 @@
              ##################################### AREA 1 ###################################################-->                            
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
-                                          <div class="col-xs-6 " >
+                                        <div class="col-xs-6 " >
                                             <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
                                            </div>
                                            <div class="col-xs-6" align="right">
@@ -169,66 +169,38 @@
                                                 <?}?>
                                            </div>
                                      <br><br><br>
-<hr class="bg-blue">
-                                        <table id="example1" class="table  table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th width="10px">Oficio</th>
-                                                    <th>Fecha/Usuario</th>
-                                                    <th>Seguimiento</th>
+                                <hr class="bg-blue">
+       
+                             <div id="ex1"></div>           
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php 
+                            <?
+                    //if($dependencia == 5){?> 
 
-              foreach ($seguimiento as $mensaje){
-                  $fecha = $this->m_ticket->fecha_text($mensaje->fecha);
-                  if ($mensaje->dependencia == 5) {                    
-                    
-                ?>
-                                                <tr class="">
-                                                    <td>
-                                                      <?=$mensaje->oficio?>
-                                                    </td>
-                                                    <td>
-                                                    <?=$fecha?> <br>
-                                                    <b><?=$mensaje->usuario?></b>
-                                                    </td>
-                                                    <td>
-                                                        <?=$mensaje->seguimiento?>
-                                                    </td>
-                                                </tr>
-
-                                                <? }} ?>
-
-                                            </tbody>
-                                        </table>
-
-                  <?
-
-                  //if($dependencia == 5){?>             
-                    
-
-                    <form name="seguimiento" id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
+                    <div id="alertaC"></div>
+                    <form id="frmColegiados">
                     <div class="col-xs-2">
                         <b>Oficio:</b>
                     <input type="text" class="form-control" name="oficio">
                     </div>
-                    <div class="col-xs-10">
+                    <div class="col-md-2 form-group">
+                        <b>Fecha:</b>
+                        <input type="date" class="form-control" name="fecha">
+                    </div>
+                    <div class="col-xs-8">
                       <b>Registro de Seguimiento:</b>
                     <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
                     </div>
                     <input type="hidden" name="folio" value="<?=$folio?>">
                     <input type="hidden" name="dependencia" value="5">
                     <br>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
-                  </form>
+                      </form>
+                    <button type="submit" id="btnColegiados" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+                
 
                   <?//}?>
 
-                                    </div>
-                                    <!-- /.tab-pane -->
+                                      </div>
+                                <!-- /.tab-pane -->
           <? #####################################AREA 2 ###################################################  ?>                                
      <div class="tab-pane" id="tab_2">
          <div class="col-xs-6 " >
@@ -279,7 +251,8 @@
                                             </tbody>
                                         </table>
 
-                                                          <?//if($dependencia == 8){?>                      
+                                                          <?//if($dependencia == 8){?>   
+                <!--                                                        
                  <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
                    <div class="col-xs-2">
                         <b>Oficio:</b>
@@ -296,7 +269,7 @@
                                       </form>
 
                   <?//}?>
-                                    </div>
+                                    --></div>
         <!-- #####################################AREA 3 ###################################################-->
                                     <!-- /.tab-pane -->
             <div class="tab-pane " id="tab_3">
@@ -349,7 +322,8 @@
                                         </table>
 
                     <?//if($dependencia == 7){?>       
-                    <hr>               
+                    <hr>   
+                    <!--            
                     <form  method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
                       <div class="col-xs-2">
                         <b>Oficio:</b>
@@ -365,9 +339,9 @@
                     <button type="submit" class="btn btn-success btn-xs-3"><i class="fa fa-comment"></i> Enviar Mensaje</button>
                     </form>
 
-                  <?//}?>
+                  <?//}?>    --> 
                                     </div>
-                                    <!-- /.tab-pane -->
+                               <!-- /.tab-pane -->
                                 </div>
                                 <!-- /.tab-content -->
                             </div>
@@ -386,7 +360,7 @@
         </div>
 
 
-        <form id="sancionColegiados">
+    <form id="sancionColegiados">
      <div class="modal fade" id="modalColegiados" role="dialog">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -477,7 +451,74 @@
 </form>
 
 
+    <script>
+     $( function(){
+        recargaColegiados();
+     });
 
+    $("#btnColegiados").click(function()
+    {
+    var formulario = $("#frmColegiados").serializeArray();
+    $.ajax({
+
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/seguimiento",
+      data: formulario,
+        }).done(function(respuesta){
+            recargaColegiados();
+            $("#alertaC").fadeIn(500);
+            $('#alertaC').html(respuesta.mensaje);
+            setTimeout(function() {
+        $("#alertaC").fadeOut(1500);
+    },1000);
+
+
+       
+      });
+    });
+      function recargaColegiados()
+    {
+    var formulario = $("#frmColegiados").serializeArray();
+    $.ajax({  
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/obt_seguimiento_colegiados",
+      data: formulario,
+    }).done(function(respuesta){
+     $("#ex1").html(respuesta.mensaje);
+     $("#example1").DataTable({
+           "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": false,
+                    "info": true,
+                    "autoWidth": true
+            });
+        });
+    }
+
+    function recargaPenal()
+    {
+    var formulario = $("#frmPenal").serializeArray();
+    $.ajax({  
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/obt_seguimiento_penal",
+      data: formulario,
+    }).done(function(respuesta){
+     $("#ex2").html(respuesta.mensaje);
+     $("#example2").DataTable({
+           "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": false,
+                    "info": true,
+                    "autoWidth": true
+            });
+        });
+    }
+</script>
 
 
 <script>
@@ -529,31 +570,7 @@
     });
    });
         </script>
-        <script>
-            $(function() {
-                // $("#example1").DataTable();
-                $('#example1').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": true,
-                    "ordering": false,
-                    "info": true,
-                    "autoWidth": true
-                });
-            // posible error con la tabla dos
-
-                $( '#example3').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": true,
-                    "ordering": false,
-                    "info": false,
-                    "autoWidth": true
-                });
-
-            });
-
-        </script>
+      
 
         <!-- /.content -->
 

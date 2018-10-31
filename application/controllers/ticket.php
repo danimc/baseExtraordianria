@@ -312,25 +312,22 @@ class Ticket extends CI_Controller {
 						'dependencia' 	=> $_POST['dependencia'],
 						'fecha'			=> $this->m_ticket->fecha_actual(),
 						'hora' 			=> $this->m_ticket->hora_actual(),
-						'seguimiento' 	=> $_POST['seguimiento']
+						'seguimiento' 	=> $_POST['seguimiento'],
+						'fecha_seguimiento' => $_POST['fecha']
 						);
 		$this->m_base->insertar_seguimiento($seguimiento);
 
-		redirect('ticket/ver_registro/'.$folio);
+		$msg = new \stdClass();
+			//$this->m_ticket->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
+
+			 $msg->id = 1;
+			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Seguimiento Añadido</p></div>';
+		
+
+		echo json_encode($msg);
+
+		//redirect('ticket/ver_registro/'.$folio);
 	}
-
-	function mensaje()
-	{
-		$folio = $_POST['folio'];
-		$mensaje = $_POST['chat'];
-		$fecha= $this->m_ticket->fecha_actual();
-		$hora= $this->m_ticket->hora_actual();
-
-		$this->m_ticket->mensaje($folio, $mensaje, $fecha, $hora);
-
-		redirect('ticket/seguimiento/'. $folio .'/#chat');
-	}
-
 
 	function correo_ticket_levantado()
 	{
@@ -377,6 +374,52 @@ class Ticket extends CI_Controller {
 
 		$this->load->view('_head');
 		$this->load->view('i_impresion_base', $datos);
+	}
+
+	function obt_seguimiento_colegiados()
+	{
+		$folio = $_POST['folio'];
+
+		$seguimiento = $this->m_ticket->obt_seguimiento($folio);
+
+		//echo json_encode($seguimiento);
+
+		$msg = '<table id="example1" class="table  table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th width="100px">Oficio</th>
+                        <th width="200px">Fecha/Usuario</th>
+                        <th>Seguimiento</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+              	foreach ($seguimiento as $mensaje){
+                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
+                	if ($mensaje->dependencia == 5) { 
+
+                  		$msg .=' <tr class="">
+                    		<td>
+                    	   	' .$mensaje->oficio . '
+                    	 	</td>
+                    	 	<td>
+                    	 	' .$fecha . ' <br>
+                    	 	<b>' .$mensaje->usuario . '</b>
+                    	 	</td>
+                    	 	<td>
+                    	    ' .$mensaje->seguimiento . '
+                    		</td>
+                        </tr>';
+                    }
+                }
+        $msg .= '</tbody> </table>';
+
+       $respuesta = new \stdClass();
+		$respuesta->id = 1;
+		$respuesta->mensaje = $msg;
+
+	echo json_encode($respuesta);
+
 	}
 
 	function generar_resumen()

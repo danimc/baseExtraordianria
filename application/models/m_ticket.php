@@ -90,7 +90,7 @@ class m_ticket extends CI_Model {
             b.oficio,
             dependencias.nombre_dependencia,
             b.dependencia,
-            concat_ws(' ', b.fecha, b.hora) as fecha,
+            fecha_seguimiento as fecha,
             seguimiento
             FROM
             b_seguimiento b
@@ -367,8 +367,8 @@ class m_ticket extends CI_Model {
     {
         $dia2 = explode(" ",$dia);
         
-        if($dia2[0] == "0000-00-00"){
-            $fecha2 = "Termino indefinido";
+        if($dia2[0] == "0000-00-00" || $dia2[0] == null ){
+            $fecha2 = "Fecha indefinida";
         }else{
             $fecha = explode("-",$dia2[0]);
             if($fecha[1] == 1){
