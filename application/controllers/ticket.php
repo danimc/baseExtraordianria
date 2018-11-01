@@ -422,6 +422,97 @@ class Ticket extends CI_Controller {
 
 	}
 
+	function obt_seguimiento_penal()
+	{
+		$folio = $_POST['folio'];
+
+		$seguimiento = $this->m_ticket->obt_seguimiento($folio);
+
+		$msg = '<table id="example2" class="table  table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th width="100px">Oficio</th>
+                        <th width="200px">Fecha/Usuario</th>
+                        <th>Seguimiento</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+              	foreach ($seguimiento as $mensaje){
+                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
+                	if ($mensaje->dependencia == 8) { 
+
+                  		$msg .=' <tr class="">
+                    		<td>
+                    	   	' .$mensaje->oficio . '
+                    	 	</td>
+                    	 	<td>
+                    	 	' .$fecha . ' <br>
+                    	 	<b>' .$mensaje->usuario . '</b>
+                    	 	</td>
+                    	 	<td>
+                    	    ' .$mensaje->seguimiento . '
+                    		</td>
+                        </tr>';
+                    }
+                }
+        $msg .= '</tbody> </table>';
+
+       $respuesta = new \stdClass();
+		$respuesta->id = 1;
+		$respuesta->mensaje = $msg;
+
+	echo json_encode($respuesta);
+
+	}
+
+	function obt_seguimiento_laboral()
+	{
+		$folio = $_POST['folio'];
+
+		$seguimiento = $this->m_ticket->obt_seguimiento($folio);
+
+		$msg = '<table id="example3" class="table  table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th width="100px">Oficio</th>
+                        <th width="200px">Fecha/Usuario</th>
+                        <th>Seguimiento</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+              	foreach ($seguimiento as $mensaje){
+                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
+                	if ($mensaje->dependencia == 7) { 
+
+                  		$msg .=' <tr class="">
+                    		<td>
+                    	   	' .$mensaje->oficio . '
+                    	 	</td>
+                    	 	<td>
+                    	 	' .$fecha . ' <br>
+                    	 	<b>' .$mensaje->usuario . '</b>
+                    	 	</td>
+                    	 	<td>
+                    	    ' .$mensaje->seguimiento . '
+                    		</td>
+                        </tr>';
+                    }
+                }
+        $msg .= '</tbody> </table>';
+
+       $respuesta = new \stdClass();
+		$respuesta->id = 1;
+		$respuesta->mensaje = $msg;
+
+	echo json_encode($respuesta);
+
+	}
+
+
+
+
 	function generar_resumen()
 	{
 		//Carga la librería que agregamos

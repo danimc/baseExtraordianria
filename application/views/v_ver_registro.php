@@ -204,142 +204,85 @@
           <? #####################################AREA 2 ###################################################  ?>                                
      <div class="tab-pane" id="tab_2">
          <div class="col-xs-6 " >
-                                            <h4 align="left">Seguimiento del <b>Área Penal:</b></h4>
-                                           </div>
-                                           <div class="col-xs-6" align="right">
-                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalPenal" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
-                                               <?if ($registro->sancionPenal == null) {?>
-                                                  <span class="bg-danger"><b>Sin Definir</b></span>
-                                               <?}
-                                               else{?>
-                                                <span class="bg-red"><b><?=$registro->sancionPenal?></b></span>
-                                                <?}?>
-                                           </div>
-                                     <br><br><br>
-<hr class="bg-blue">
-        <table id="example2" class="table  table-hover">
-        <thead>
-      <tr>
-        <th width="10px">Oficio</th>
-        <th>Fecha/Usuario</th>
-         <th>Seguimiento</th>
-
-            </tr>
-        </thead>
-            <tbody>
-       <?php 
-
-              foreach ($seguimiento as $mensaje){
-                  $fecha = $this->m_ticket->fecha_text($mensaje->fecha); 
-                  if ($mensaje->dependencia == 8) {       
-                ?>
-                                                <tr class="">
-                                                  <td>
-                                                      <?=$mensaje->oficio?>
-                                                    </td>
-                                                    <td>
-                                                        <?=$fecha?> <br>
-                                                            <b><?=$mensaje->usuario?></b>
-                                                    </td>
-                                                    <td>
-                                                        <?=$mensaje->seguimiento?>
-                                                    </td>
-                                                </tr>
-
-                                                <? }} ?>
-
-                                            </tbody>
-                                        </table>
-
-                                                          <?//if($dependencia == 8){?>   
-                <!--                                                        
-                 <form id="seguimiento" method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
+        <h4 align="left">Seguimiento del <b>Área Penal:</b></h4>
+        </div>
+        <div class="col-xs-6" align="right">
+            <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalPenal" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+            <?if ($registro->sancionPenal == null) {?>
+                <span class="bg-danger"><b>Sin Definir</b></span>
+            <?}
+            else{?>
+            <span class="bg-red"><b><?=$registro->sancionPenal?></b></span>
+            <?}?>
+        </div>
+           <br><br><br>
+            <hr class="bg-blue">
+               <div id="ex2"></div> 
+                 <div id="alertaP"></div>
+                 <form id="frmPenal">
                    <div class="col-xs-2">
                         <b>Oficio:</b>
-                    <input type="text" class="form-control" name="oficio">
+                        <input type="text" class="form-control" name="oficio">
                     </div>
-                    <div class="col-xs-10">
+                    <div class="col-md-2 form-group">
+                        <b>Fecha:</b>
+                        <input type="date" class="form-control" name="fecha">
+                    </div>
+                    <div class="col-xs-8">
                       <b>Registro de Seguimiento:</b>
-                    <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+                        <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
                     </div>
-                                        <input type="hidden" name="folio" value="<?=$folio?>">
-                                          <input type="hidden" name="dependencia" value="8">
-                                        <br>
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
-                                      </form>
-
+                    <input type="hidden" name="folio" value="<?=$folio?>">
+                    <input type="hidden" name="dependencia" value="8">
+                    <br>                    
+                    </form>
+                    <button type="submit" id="btnPenal" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
                   <?//}?>
-                                    --></div>
+                    </div>
         <!-- #####################################AREA 3 ###################################################-->
-                                    <!-- /.tab-pane -->
+                              
+
             <div class="tab-pane " id="tab_3">
                 <div class="col-xs-6 " >
-                                            <h4 align="left">Seguimiento del <b>Área Laboral:</b></h4>
-                                           </div>
-                                           <div class="col-xs-6" align="right">
-                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
-                                               <?if ($registro->sancionLaboral == null) {?>
-                                                  <span class="bg-danger"><b>Sin Definir</b></span>
-                                               <?}
-                                               else{?>
-                                                <span class="bg-red"><b><?=$registro->sancionLaboral?></b></span>
-                                                <?}?>
-                                           </div>
-                                     <br><br><br>
+                <h4 align="left">Seguimiento del <b>Área Laboral:</b></h4>
+                </div>
+                 <div class="col-xs-6" align="right">
+                    <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                    <?if ($registro->sancionLaboral == null) {?>
+                        <span class="bg-danger"><b>Sin Definir</b></span>
+                    <?}
+                    else{?>
+                    <span class="bg-red"><b><?=$registro->sancionLaboral?></b></span>
+                    <?}?>
+                </div>
+            <br><br><br>
             <hr class="bg-blue">
-                <table id="example3" class="table  table-hover">
-                    <thead>
-                        <tr>
-                            <th width="10px">Oficio</th>
-                             <th>Fecha/Usuario</th>
-                             <th>Seguimiento</th>
 
-                        </tr>
-                     </thead>
-                     <tbody>
-                        <?php 
-
-              foreach ($seguimiento as $mensaje){
-                  $fecha = $this->m_ticket->fecha_text($mensaje->fecha);
-                   if ($mensaje->dependencia == 7) {        
-                ?>
-                                                <tr class="">
-                                                  <td>
-                                                      <?=$mensaje->oficio?>
-                                                    </td>
-                                                    <td>
-                                                        <?=$fecha?> <br>
-                                                            <b><?=$mensaje->usuario?></b>
-                                                    </td>
-                                                    <td>
-                                                        <?=$mensaje->seguimiento?>
-                                                    </td>
-                                                </tr>
-
-                                                <? }} ?>
-
-                                            </tbody>
-                                        </table>
+                <div id="ex3"></div>
 
                     <?//if($dependencia == 7){?>       
                     <hr>   
-                    <!--            
-                    <form  method="POST" action="<?=base_url()?>index.php?/ticket/seguimiento">
+                    
+                    <form  id="frmLaboral">
                       <div class="col-xs-2">
                         <b>Oficio:</b>
-                    <input type="text" class="form-control" name="oficio">
+                        <input type="text" class="form-control" name="oficio">
                     </div>
-                    <div class="col-xs-10">
+                    <div class="col-md-2 form-group">
+                        <b>Fecha:</b>
+                        <input type="date" class="form-control" name="fecha">
+                    </div>
+                    <div class="col-xs-8">
                       <b>Registro de Seguimiento:</b>
                     <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
                     </div>
                     <input type="hidden" name="folio" value="<?=$folio?>">
                       <input type="hidden" name="dependencia" value="7">
-                    <br>
-                    <button type="submit" class="btn btn-success btn-xs-3"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+                    <br>                    
                     </form>
+                    <button type="submit" id="btnLaboral" class="btn btn-success btn-xs-3"><i class="fa fa-comment"></i> Enviar Mensaje</button>
 
-                  <?//}?>    --> 
+                  <?//}?>   
                                     </div>
                                <!-- /.tab-pane -->
                                 </div>
@@ -454,6 +397,8 @@
     <script>
      $( function(){
         recargaColegiados();
+        recargaPenal();
+        recargaLaboral();
      });
 
     $("#btnColegiados").click(function()
@@ -477,7 +422,52 @@
        
       });
     });
-      function recargaColegiados()
+
+    //FORM  SEGUIMIENTO PENAL
+        $("#btnPenal").click(function()
+    {
+    var formulario = $("#frmPenal").serializeArray();
+    $.ajax({
+
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/seguimiento",
+      data: formulario,
+        }).done(function(respuesta){
+            recargaPenal();
+            $("#alertaP").fadeIn(500);
+            $('#alertaP').html(respuesta.mensaje);
+            setTimeout(function() {
+        $("#alertaP").fadeOut(1500);
+    },1000);
+
+        });
+    });
+
+    // FORM LABORAL
+
+    $("#btnLaboral").click(function()
+    {
+    var formulario = $("#frmLaboral").serializeArray();
+    $.ajax({
+
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/seguimiento",
+      data: formulario,
+        }).done(function(respuesta){
+            recargaLaboral();
+            $("#alertaL").fadeIn(500);
+            $('#alertaL').html(respuesta.mensaje);
+            setTimeout(function() {
+        $("#alertaP").fadeOut(1500);
+    },1000);
+
+        });
+    });
+
+
+    function recargaColegiados()
     {
     var formulario = $("#frmColegiados").serializeArray();
     $.ajax({  
@@ -509,6 +499,28 @@
     }).done(function(respuesta){
      $("#ex2").html(respuesta.mensaje);
      $("#example2").DataTable({
+           "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": false,
+                    "info": true,
+                    "autoWidth": true
+            });
+        });
+    }
+
+
+    function recargaLaboral()
+    {
+    var formulario = $("#frmLaboral").serializeArray();
+    $.ajax({  
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/ticket/obt_seguimiento_laboral",
+      data: formulario,
+    }).done(function(respuesta){
+     $("#ex3").html(respuesta.mensaje);
+     $("#example3").DataTable({
            "paging": true,
                     "lengthChange": false,
                     "searching": true,
