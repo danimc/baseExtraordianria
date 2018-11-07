@@ -30,8 +30,24 @@
         <script src="<?=base_url()?>src/js/dataTables.bootstrap.min.js"></script>
 
         <script src="<?=base_url()?>src/js/wys.js"></script>
+
+        <script type="text/javascript" src="<?=base_url()?>src/js/tables-datatable.js"></script>
+
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/Responsive/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/Responsive/js/responsive.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/Buttons/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/Buttons/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/JSZip/jszip.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/pdfmake/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/pdfmake/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/Buttons/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/Buttons/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>src/vendor/DataTables/Buttons/js/buttons.colVis.min.js"></script>
 
 
 

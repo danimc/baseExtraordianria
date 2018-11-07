@@ -9,7 +9,7 @@ $estados = $this->m_ticket->estatus();
       Panel de control
       <small>Registros | Vista Captura </small>
     </h1><br>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb">   
       <li><a href="/oag"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#"><i class="fa fa-ticket"></i> Registros</a></li>
     </ol>
@@ -18,7 +18,7 @@ $estados = $this->m_ticket->estatus();
   <!-- Main content -->
   <section class="content">
     <a href="/base" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
-    <a href="<?=base_url()?>index.php?/ticket/nuevo_registro" class="btn btn-app bg-green"><span class="fa fa-plus"></span>Nuevo Registro</a>
+      
    	   
     <div id="form_newsletter_result"></div>
     <div class="box">
@@ -28,7 +28,7 @@ $estados = $this->m_ticket->estatus();
       <!-- /.box-header -->
       <div class="box-body">
         <div class="table-responsive col-md-12">
-         <table id="example1" class="table table-bordered table-hover">
+         <table id="table-2" class="table table-bordered table-hover dataTable">
           <thead>
             <tr>
               <th>Cons.</th>
@@ -37,7 +37,7 @@ $estados = $this->m_ticket->estatus();
               <th>Denunciante</th>
               <th>Denunciado</th>
               <th>Conducta(s)</th>
-              <th>Sanciones</th>
+              <th>Estatus</th>
               <th>Acciones</th>
 
             </tr>
@@ -53,16 +53,16 @@ $estados = $this->m_ticket->estatus();
               <td ><?=$registro->oficio?></td>
               <td >
                 <b> Nombre: </b> <?=$registro->remitente?> <hr>
-                <b>Dependencia:</b> <br>
+                <b>Dependencia: </b> <br>
                 <?=$registro->dependencia?>
               </td>
               <td >
-                <b>Nombre: </b> <?=$registro->denunciante?> <br>
+                <b>Nombre: </b> <?=$registro->denunciante?> <hr>
                 <b>Edad: </b> <?=$registro->edadDenunciante?> <hr>
                 <b>Sujeto: </b> <?=$registro->sujeto1?>                  
               </td>
               <td >
-                <b>Nombre: </b><?=$registro->denunciado?> <br>
+                <b>Nombre: </b><?=$registro->denunciado?> <hr>
                 <b>Edad: </b> <?=$registro->edadDenunciado?> <hr>
                 <b>Sujeto: </b> <?=$registro->sujeto2?> <br>
 
@@ -70,16 +70,16 @@ $estados = $this->m_ticket->estatus();
               <td ><?=$registro->concepto?></td>
               <td ><?
                       if($registro->sancionP != NULL){
-                        echo "<p class=''><b>Penal: </b>" . $registro->sancionP . "</p>";
+                        echo "<p class=''><b>Penal: </b>" . $registro->sancionP . "</p> <hr>";
                       }
                       if($registro->sancionL != NULL){
-                        echo "<p class=''><b>Laboral: </b>" . $registro->sancionL . "</p>";
+                        echo "<p class=''><b>Laboral: </b>" . $registro->sancionL . "</p> <hr>";
                       }
                       if($registro->sancionC != NULL){
-                        echo "<p class=''><b>Colegiados: </b>" . $registro->sancionC . "<br>";
+                        echo "<p class=''><b>Colegiados: </b>" . $registro->sancionC . "<br> <hr>";
                       }
                       if($registro->sancionP == NULL && $registro->sancionL == NULL && $registro->sancionC == NULL) {
-                        echo "En Proceso";
+                        echo "Sin Definir";
                       }
                         ?></td>
               <td width="10px" align="center">

@@ -153,14 +153,21 @@
                                 </ul>
 
     <!--##########################################TABS##################################################################
-             ##################################### AREA 1 ###################################################-->                            
+             ##################################### AREA 1 COLEGIADOS ###################################################-->
+               <? if($dependencia == 5) {
+                    $bc = "false";
+                }
+                else {
+                    $bc = "true";
+                } ?> 
+
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
                                         <div class="col-xs-6 " >
                                             <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
                                            </div>
                                            <div class="col-xs-6" align="right">
-                                               <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                                               <button disabled="<?=$bc?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
                                                <?if ($registro->sancionColegiados == null) {?>
                                                   <span class="bg-danger"><b>Sin Definir</b></span>
                                                <?}
@@ -174,7 +181,7 @@
                              <div id="ex1"></div>           
 
                             <?
-                    //if($dependencia == 5){?> 
+                    if($dependencia == 5){?> 
 
                     <div id="alertaC"></div>
                     <form id="frmColegiados">
@@ -197,17 +204,23 @@
                     <button type="submit" id="btnColegiados" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
                 
 
-                  <?//}?>
+                  <?}?>
 
                                       </div>
                                 <!-- /.tab-pane -->
-          <? #####################################AREA 2 ###################################################  ?>                                
+          <!-- #####################################AREA 2 PENAL###################################################  -->
+                <? if($dependencia == 8) {
+                    $bp = "false";
+                }
+                else {
+                    $bp = "true";
+                } ?>                            
      <div class="tab-pane" id="tab_2">
          <div class="col-xs-6 " >
         <h4 align="left">Seguimiento del <b>Área Penal:</b></h4>
         </div>
         <div class="col-xs-6" align="right">
-            <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalPenal" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+            <button disabled="<?=$bp?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalPenal" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
             <?if ($registro->sancionPenal == null) {?>
                 <span class="bg-danger"><b>Sin Definir</b></span>
             <?}
@@ -218,6 +231,9 @@
            <br><br><br>
             <hr class="bg-blue">
                <div id="ex2"></div> 
+                <?
+                    if($dependencia == 8){?> 
+
                  <div id="alertaP"></div>
                  <form id="frmPenal">
                    <div class="col-xs-2">
@@ -237,17 +253,22 @@
                     <br>                    
                     </form>
                     <button type="submit" id="btnPenal" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
-                  <?//}?>
+                  <?}?>
                     </div>
-        <!-- #####################################AREA 3 ###################################################-->
-                              
+        <!-- #####################################AREA 3 LABORAL ###################################################-->
+            <? if($dependencia == 7) {
+                    $bl = "false";
+                }
+                else {
+                    $bl = "true";
+                } ?>          
 
             <div class="tab-pane " id="tab_3">
                 <div class="col-xs-6 " >
                 <h4 align="left">Seguimiento del <b>Área Laboral:</b></h4>
                 </div>
                  <div class="col-xs-6" align="right">
-                    <button class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                    <button disabled="<?=$bl?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
                     <?if ($registro->sancionLaboral == null) {?>
                         <span class="bg-danger"><b>Sin Definir</b></span>
                     <?}
@@ -260,7 +281,7 @@
 
                 <div id="ex3"></div>
 
-                    <?//if($dependencia == 7){?>       
+                    <?if($dependencia == 7){?>       
                     <hr>   
                     
                     <form  id="frmLaboral">
@@ -282,7 +303,7 @@
                     </form>
                     <button type="submit" id="btnLaboral" class="btn btn-success btn-xs-3"><i class="fa fa-comment"></i> Enviar Mensaje</button>
 
-                  <?//}?>   
+                  <?}?>   
                                     </div>
                                <!-- /.tab-pane -->
                                 </div>
@@ -294,12 +315,6 @@
 
                 </div>
         </section>
-
-
-
-
-
-
         </div>
 
 
@@ -469,7 +484,10 @@
 
     function recargaColegiados()
     {
-    var formulario = $("#frmColegiados").serializeArray();
+    var formulario = { 
+        "folio" : <?=$folio?> 
+    };
+    console.log(formulario)
     $.ajax({  
       type: "POST",
       dataType: 'json',
@@ -490,7 +508,9 @@
 
     function recargaPenal()
     {
-    var formulario = $("#frmPenal").serializeArray();
+       var formulario = { 
+        "folio" : <?=$folio?> 
+    };
     $.ajax({  
       type: "POST",
       dataType: 'json',
@@ -512,7 +532,9 @@
 
     function recargaLaboral()
     {
-    var formulario = $("#frmLaboral").serializeArray();
+       var formulario = { 
+        "folio" : <?=$folio?> 
+    };
     $.ajax({  
       type: "POST",
       dataType: 'json',

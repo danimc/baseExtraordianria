@@ -45,6 +45,11 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
         <script src="<?=base_url()?>src/js/jquery-2.2.3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
+        <link rel="stylesheet" href="<?=base_url()?>src/vendor/DataTables/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>src/vendor/DataTables/Responsive/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>src/vendor/DataTables/Buttons/css/buttons.dataTables.min.css">
+        <link rel="stylesheet" href="<?=base_url()?>src/vendor/DataTables/Buttons/css/buttons.bootstrap4.min.css">
+
         <script >
             $(document).ready(function() {
     $('.js-example-basic-multiple').select2();
