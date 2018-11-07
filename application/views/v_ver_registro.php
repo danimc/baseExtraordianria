@@ -167,7 +167,7 @@
                                             <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
                                            </div>
                                            <div class="col-xs-6" align="right">
-                                               <button disabled="<?=$bc?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                                               <button disabled="<?=$bc?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
                                                <?if ($registro->sancionColegiados == null) {?>
                                                   <span class="bg-danger"><b>Sin Definir</b></span>
                                                <?}
@@ -220,7 +220,7 @@
         <h4 align="left">Seguimiento del <b>Área Penal:</b></h4>
         </div>
         <div class="col-xs-6" align="right">
-            <button disabled="<?=$bp?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalPenal" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+            <button disabled="<?=$bp?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalPenal" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
             <?if ($registro->sancionPenal == null) {?>
                 <span class="bg-danger"><b>Sin Definir</b></span>
             <?}
@@ -268,7 +268,7 @@
                 <h4 align="left">Seguimiento del <b>Área Laboral:</b></h4>
                 </div>
                  <div class="col-xs-6" align="right">
-                    <button disabled="<?=$bl?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> SANCIÓN:  </button>
+                    <button disabled="<?=$bl?>" class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
                     <?if ($registro->sancionLaboral == null) {?>
                         <span class="bg-danger"><b>Sin Definir</b></span>
                     <?}
@@ -324,12 +324,12 @@
           <div class="modal-content">
             <div class="modal-header bg-red">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">¡Aplicar Sancion! </h4>
+              <h4 class="modal-title">¡Aplicar Estatus! </h4>
             </div>
             <div class="modal-body">
-              <p>Seleccione la Sanción correspondiente de la siguiente lista</p>
+              <p>Seleccione el Estatus correspondiente de la siguiente lista</p>
                 <select name="sancion" class="form-control">
-                  <option disabled>Selecciones una Sanción</option>
+                  <option disabled>Selecciones un Estatus</option>
                   <?
                   foreach ($sanciones as $sancion) {?>
                     <option value="<?=$sancion->id?>"><?=$sancion->nombre?></option>
@@ -354,12 +354,12 @@
           <div class="modal-content">
             <div class="modal-header bg-red">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">¡Aplicar Sancion! </h4>
+              <h4 class="modal-title">¡Aplicar Estatus! </h4>
             </div>
             <div class="modal-body">
-              <p>Seleccione la Sanción correspondiente de la siguiente lista</p>
+              <p>Seleccione el Estatus correspondiente de la siguiente lista</p>
                 <select name="sancion" class="form-control">
-                  <option disabled>Selecciones una Sanción</option>
+                  <option disabled>Selecciones un Estatus</option>
                   <?
                   foreach ($sanciones as $sancion) {?>
                     <option value="<?=$sancion->id?>"><?=$sancion->nombre?></option>
@@ -385,12 +385,12 @@
           <div class="modal-content">
             <div class="modal-header bg-red">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">¡Aplicar Sancion! </h4>
+              <h4 class="modal-title">¡Aplicar Estatus! </h4>
             </div>
             <div class="modal-body">
-              <p>Seleccione la Sanción correspondiente de la siguiente lista</p>
+              <p>Seleccione el Estatus correspondiente de la siguiente lista</p>
                 <select name="sancion" class="form-control">
-                  <option disabled>Selecciones una Sanción</option>
+                  <option disabled>Selecciones un Estatus</option>
                   <?
                   foreach ($sanciones as $sancion) {?>
                     <option value="<?=$sancion->id?>"><?=$sancion->nombre?></option>
