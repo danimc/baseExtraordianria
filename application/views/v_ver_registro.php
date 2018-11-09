@@ -268,7 +268,7 @@
                 <h4 align="left">Seguimiento del <b>Área Laboral:</b></h4>
                 </div>
                  <div class="col-xs-6" align="right">
-                    <button disabled="<?=$bl?>" class="btn btn-sm btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
+                    <button disabled="<?=$bl?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalLaboral" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
                     <?if ($registro->sancionLaboral == null) {?>
                         <span class="bg-danger"><b>Sin Definir</b></span>
                     <?}
