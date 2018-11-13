@@ -28,11 +28,11 @@ $estados = $this->m_ticket->estatus();
       <!-- /.box-header -->
       <div class="box-body">
         <div class="table-responsive col-md-12">
-         <table id="table-2" class="table table-bordered table-hover dataTable">
+         <table id="table-2" class="table table-bordered table-striped table-hover dataTable">
           <thead>
             <tr>
-              <th>Cons.</th>
-              <th width="10px">Oficio</th>
+              <th>Cons./Oficio</th>
+            
               <th>Remitente</th>
               <th>Denunciante</th>
               <th>Denunciado</th>
@@ -49,8 +49,11 @@ $estados = $this->m_ticket->estatus();
             // $estatus = $this->m_ticket->etiqueta($registro->id_situacion);
             ?>
             <tr class="">
-              <td width="10px" ><?=$registro->consecutivo?></td>
-              <td ><?=$registro->oficio?></td>
+              <td width="10px" >
+                <b>Cons: </b><?=$registro->consecutivo?> <hr>
+                <b>Oficio: </b> <?=$registro->oficio?>
+              </td>
+              
               <td >
                 <b> Nombre: </b> <?=$registro->remitente?> <hr>
                 <b>Dependencia: </b> <br>

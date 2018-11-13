@@ -50,7 +50,27 @@ class m_base extends CI_Model {
         return json_encode($array);
     }
 
-        function obt_victimas()
+    function obt_puestos()
+    {
+
+        $qry = "";
+
+        $qry = "SELECT
+                 distinct(puesto) 
+                 FROM crm.b_registros
+                 WHERE puesto != '' 
+                 AND puesto IS NOT NULL";
+
+        $puesto = $this->db->query($qry)->result();
+        $array = array();
+        foreach ($puesto as $rem) {
+            $array[] = 
+                $rem->puesto;
+        }
+        return json_encode($array);
+    }
+
+    function obt_victimas()
     {
         $qry = "";
 

@@ -9,7 +9,7 @@
         var remi = <?=$remitentes?>;
         var victima = <?=$victimas?>;
         var denunciado = <?=$denunciados?>;
-        console.log(denunciado);
+        var puesto = <?=$puestos?>;
         $("#remitente").autocomplete({
             source: remi
         });
@@ -18,6 +18,9 @@
         });
         $("#denunciado").autocomplete({
             source: denunciado
+        });
+        $("#puesto").autocomplete({
+            source: puesto
         });
     });
     </script>
@@ -40,8 +43,8 @@ function registro(){
                 "sexoDenunciado"  : $('#sexoDenunciado').val(),
                 "dependencia"  : $('#dependencia').val(),
                 "puesto"  : $('#puesto').val(),
-                "concepto"  : $('#concepto').val(),
-                "asunto"  : $('#asunto').val(),
+               // "concepto"  : $('#concepto').val(),
+               // "asunto"  : $('#asunto').val(),
                 "fecha"  : $('#fecha').val(),
 
         };
@@ -181,7 +184,7 @@ function folioPlataforma()
                             <h4><i class="fa fa-box"></i>Dependencia: </h4>
                         </div>
                         <div class="form-group col-sm-10">                            
-                        <select class="form-control" name="dependencia" id="dependencia">
+                        <select class="form-control js-example-basic-single" name="dependencia" id="dependencia">
                             <option value="0"> </option>
                             <? foreach ($centros as $centro) {?>
                                 <option value="<?=$centro->id?>"><?=$centro->nombre?></option>
@@ -305,10 +308,11 @@ function folioPlataforma()
                    
                     <div class="box-body"> 
                     <!-- /.box-header -->
+                       <!-- 
                         <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Conducta: </h4>
                         </div>
-                        <div class="form-group col-sm-7">                            
+                     <div class="form-group col-sm-7">                            
                             <select class="js-example-basic-multiple form-control" id="concepto" name="concepto" multiple="multiple" >
                             <option value="0"> </option>
                             <? foreach ($conceptos as $concepto) {?>
@@ -316,21 +320,25 @@ function folioPlataforma()
                            <? }?>
                         </select>
                  
-                        </div>
+                        </div> --
 
                      <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Resumen: </h4>
                         </div>
                     <div class="box-body pad col-sm-8">
                         <textarea  required="true" class="textarea" id="asunto" name="asunto" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 100px; font-size: 14px; line-height: 20px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                        <br><br>
+                        
+                    -->
                         <div class="form-group">
-                            <button  id="btn" onclick="registro()" type="submit" class="btn btn-success">
+                            <br>
+                            <div class="col-sm-6">
+                              <button  id="btn" onclick="registro()" type="submit" class="btn btn-success btn-block">
                                     <i class="fa fa-save"></i>
                                     Guardar y Capturar otro Registro</button>
-                     
-                            <a class="btn btn-danger" href="/oagmvc">Cancelar</a>
-                            
+                            </div>
+                            <div class="col-sm-6">
+                                <a class="btn btn-danger btn-block" href="/oagmvc">  <i class="fa fa-close"></i> Cancelar</a>
+                            </div>
                         </div>
                     </div>
                       </div>  
@@ -363,4 +371,8 @@ function folioPlataforma()
 <!-- /.content -->
 
 <!-- /.content-wrapper -->
- 
+ <script>
+     $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+ </script>
