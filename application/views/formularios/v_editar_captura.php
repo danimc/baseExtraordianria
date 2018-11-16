@@ -1,3 +1,29 @@
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+    $( function(){
+        var remi = <?=$remitentes?>;
+        var victima = <?=$victimas?>;
+        var denunciado = <?=$denunciados?>;
+        var puesto = <?=$puestos?>;
+        $("#remitente").autocomplete({
+            source: remi
+        });
+        $("#denunciante").autocomplete({
+            source: victima
+        });
+        $("#denunciado").autocomplete({
+            source: denunciado
+        });
+        $("#puesto").autocomplete({
+            source: puesto
+        });
+    });
+    </script>
+
 <script>
 function editado(){
         var parametros = {
@@ -17,8 +43,8 @@ function editado(){
                 "sexoDenunciado"  : $('#sexoDenunciado').val(),
                 "dependencia"  : $('#dependencia').val(),
                 "puesto"  : $('#puesto').val(),
-                "concepto"  : $('#concepto').val(),
-                "asunto"  : $('#asunto').val(),
+               // "concepto"  : $('#concepto').val(),
+               // "asunto"  : $('#asunto').val(),
                 "fecha"  : $('#fecha').val(),
 
         };
@@ -143,7 +169,7 @@ function folioPlataforma()
                             <h4><i class="fa fa-box"></i>Dependencia: </h4>
                         </div>
                         <div class="form-group col-sm-9">                            
-                        <select class="form-control" name="dependencia" id="dependencia">
+                        <select class="form-control js-example-basic-single" name="dependencia" id="dependencia">
                             <option value="<?=$registro->idDependencia?>"> <?=$registro->dependencia?> </option>
                             <? foreach ($centros as $centro) {?>
                                 <option value="<?=$centro->id?>"><?=$centro->nombre?></option>
@@ -269,7 +295,7 @@ function folioPlataforma()
                 <div class="box box-success">
                    
                     <div class="box-body"> 
-                    <!-- /.box-header -->
+                  <!--
                         <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Conducta: </h4>
                         </div>
@@ -280,15 +306,15 @@ function folioPlataforma()
                                 <option value="<?=$concepto->id?>"><?=$concepto->nombre?></option>
                            <? }?>
                         </select>
-                        </div>
+                        </div> -->
 
                         <input type="hidden" value="<?=$folio?>" id="id" name="id">
-
+      <!--  
                      <div class="col-sm-3">
                             <h4><i class="fa fa-box"></i>Resumen: </h4>
                         </div>
                         <div class="box-body pad col-sm-8">
-                            <textarea  required="true" class="textarea" id="asunto" name="asunto" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 100px; font-size: 14px; line-height: 20px; border: 1px solid #dddddd; padding: 10px;"><?=$registro->asunto?></textarea>
+                     <textarea  required="true" class="textarea" id="asunto" name="asunto" placeholder="Escriba aqui todos los detalles del incidente" style="width: 100%; height: 100px; font-size: 14px; line-height: 20px; border: 1px solid #dddddd; padding: 10px;"><?=$registro->asunto?></textarea> -->
                                 <div class="form-group">
                                     <hr>
                                     <button  id="btn" onclick="editado()" type="submit" class="btn btn-success">
@@ -325,6 +351,12 @@ function folioPlataforma()
       </div>
 
       </div>
+
+       <script>
+     $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+ </script>
 
 <!-- /.content -->
 

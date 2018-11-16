@@ -171,6 +171,11 @@ class Ticket extends CI_Controller {
 		$datos['centros'] = $this->m_base->obt_centros();
 		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['conceptos'] = $this->m_base->obt_conceptos();
+		$datos['remitentes'] = $this->m_base->obt_remitentes();
+		$datos['puestos'] = $this->m_base->obt_puestos();
+		$datos['victimas'] = $this->m_base->obt_victimas();
+		$datos['denunciados'] = $this->m_base->obt_denunciados();
+		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['sexo'] = $this->m_base->obt_sexo();
 		$datos['asignados'] = $this->m_ticket->obt_asignados();
 		$datos['categorias'] = $this->m_ticket->obt_categorias();
@@ -216,9 +221,9 @@ class Ticket extends CI_Controller {
 				'sexoDenunciado'	=> $_POST['sexoDenunciado'],
 
 				'dependencia' 		=> $_POST['dependencia'],
-				'puesto' 			=> $_POST['puesto'],
-				'concepto'			=> $_POST['concepto'],
-				'asunto'			=> $_POST['asunto']
+				'puesto' 			=> $_POST['puesto']
+				// 'concepto'			=> $_POST['concepto'],
+				// 'asunto'			=> $_POST['asunto']
 		);
 		
 
