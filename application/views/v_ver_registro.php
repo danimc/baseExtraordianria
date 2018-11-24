@@ -1,23 +1,36 @@
 <?
-    if ($registro->edadDenunciante == 17)
-    {
+    if ($registro->edadDenunciante == 17) {
         $edad1 = "Menor de Edad";
     }
-    else
-    {
+    else {
         $edad1 = "Mayor de Edad";
     }
-      if ($registro->edadDenunciado == 17)
-    {
+      if ($registro->edadDenunciado == 17) {
         $edad2 = "Menor de Edad";
     }
-    else
-    {
+    else {
         $edad2 = "Mayor de Edad";
     }
-
-
-?>
+    
+    if($dependencia == 5) {
+        $bc = "false";
+        }
+    else {
+        $bc = "true";
+        } 
+    if($dependencia == 8) {
+        $bp = "false";
+        }
+    else {
+        $bp = "true";
+        }  
+    if($dependencia == 7) {
+        $bl = "false";
+        }
+    else {
+        $bl = "true";
+        } 
+    ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -147,38 +160,75 @@
                             </div>
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Colegiados</a></li>
+                                    <li class="active"><a href="#tab_0" data-toggle="tab" aria-expanded="false"><b>Resumen General</b> </a></li>
+                                    <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="false">Organos Colegiados</a></li>
                                     <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Area Penal</a></li>
-                                    <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="true">Laboral</a></li>
+                                    <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="true">Unidad Laboral</a></li>
                                 </ul>
 
     <!--##########################################TABS##################################################################
-             ##################################### AREA 1 COLEGIADOS ###################################################-->
-               <? if($dependencia == 5) {
-                    $bc = "false";
-                }
-                else {
-                    $bc = "true";
-                } ?> 
-
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab_1">
-                                        <div class="col-xs-6 " >
-                                            <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
-                                           </div>
-                                           <div class="col-xs-6" align="right">
-                                               <button disabled="<?=$bc?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
-                                               <?if ($registro->sancionColegiados == null) {?>
-                                                  <span class="bg-danger"><b>Sin Definir</b></span>
-                                               <?}
-                                               else{?>
-                                                <span class="bg-red"><b><?=$registro->sancionColegiados?></b></span>
-                                                <?}?>
-                                           </div>
-                                     <br><br><br>
-                                <hr class="bg-blue">
+             ##################################### SEGUIMIENTO GENERAL ###################################################-->
        
-                             <div id="ex1"></div>           
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_0">
+                        <div class="col-xs-6 " >
+                            <h4 align="left"><b>SEGUIMIENTO GENERAL:</b></h4>
+                    </div>
+                    <div class="col-xs-6" align="right">
+            
+                    </div>
+                                     <br><br><br>
+                     <hr class="bg-blue">
+       
+                    <div id="ex0"></div>           
+
+                            <?
+                    if($dependencia == 5){?> 
+
+                    <div id="alertaG"></div>
+                    <form id="frmColegiados">
+                    <div class="col-xs-2">
+                        <b>Oficio:</b>
+                    <input type="text" class="form-control" name="oficio">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <b>Fecha:</b>
+                        <input type="date" class="form-control" name="fecha">
+                    </div>
+                    <div class="col-xs-8">
+                      <b>Registro de Seguimiento:</b>
+                    <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
+                    </div>
+                    <input type="hidden" name="folio" value="<?=$folio?>">
+                    <input type="hidden" name="dependencia" value="5">
+                    <br>
+                      </form>
+                    <button type="submit" id="btnColegiados" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+                
+
+                  <?}?>
+
+                     </div>
+    <!--------------------------------------------------------- AREA COLEGIADOS ------------------------------------------------->
+
+                    <div class="tab-pane" id="tab_1">
+                        <div class="col-xs-6 " >
+                            <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
+                            </div>
+                            <div class="col-xs-6" align="right">
+                                <button disabled="<?=$bc?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
+                                <?if ($registro->sancionColegiados == null) {?>
+                                    <span class="bg-danger"><b>Sin Definir</b></span>
+                                <?}
+                                else{?>
+                                 <span class="bg-red"><b><?=$registro->sancionColegiados?></b></span>
+                                 <?}?>
+                            </div>
+                        <br><br><br>
+                <hr class="bg-blue">
+       
+                <div id="ex1"></div>           
 
                             <?
                     if($dependencia == 5){?> 
@@ -206,15 +256,10 @@
 
                   <?}?>
 
-                                      </div>
+            </div>
                                 <!-- /.tab-pane -->
           <!-- #####################################AREA 2 PENAL###################################################  -->
-                <? if($dependencia == 8) {
-                    $bp = "false";
-                }
-                else {
-                    $bp = "true";
-                } ?>                            
+                                   
      <div class="tab-pane" id="tab_2">
          <div class="col-xs-6 " >
         <h4 align="left">Seguimiento del <b>Área Penal:</b></h4>
@@ -256,12 +301,7 @@
                   <?}?>
                     </div>
         <!-- #####################################AREA 3 LABORAL ###################################################-->
-            <? if($dependencia == 7) {
-                    $bl = "false";
-                }
-                else {
-                    $bl = "true";
-                } ?>          
+              
 
             <div class="tab-pane " id="tab_3">
                 <div class="col-xs-6 " >
