@@ -34,7 +34,7 @@ $usuario = $this->m_usuario->obt_usuario($codigo);
 							<a href="<?php echo base_url();?>index.php?/Inicio"><i class="fa fa-home"></i> <span>Inicio</span></a>
 						</li>
 						<li class="">
-							<a href="<?php echo base_url();?>index.php?/ticket/lista_registros"><i class="fa fa-pencil"></i> <span>Registros</span></a>
+							<a href="<?php echo base_url();?>index.php?/base/lista_registros"><i class="fa fa-pencil"></i> <span>Registros</span></a>
 						</li>
 						<!--<li ><a href="menuUsuarios"><i class="fa fa-user"></i> <span>Usuarios</span></a></li>-->
 <!-- 						 <li class="treeview">

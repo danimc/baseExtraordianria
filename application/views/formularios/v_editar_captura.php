@@ -51,7 +51,7 @@ function editado(){
         console.log(parametros);
         $.ajax({
                 data:  parametros,
-                url:   'index.php?/ticket/edicion_captura',
+                url:   'index.php?/base/edicion_captura',
                 type:  'post',
                 beforeSend: function () {
                         $("#resultado").html("Procesando, espere por favor...");
@@ -66,7 +66,7 @@ function folioPlataforma()
 {
      $.ajax({
                 //data:  parametros,
-                url:   'index.php?/ticket/folio_plataforma',
+                url:   'index.php?/base/folio_plataforma',
                 type:  'post',
                 beforeSend: function () {
                         $("#resultado").html("Procesando, espere por favor...");
@@ -97,7 +97,7 @@ function folioPlataforma()
        
     <!-- Main content -->
     <section class="content">
-            <a href="<?=base_url()?>index.php?/ticket/lista_registros" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
+            <a href="<?=base_url()?>index.php?/base/lista_registros" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
         <span id="resultado"></span>
           
 

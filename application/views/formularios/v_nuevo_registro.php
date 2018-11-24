@@ -51,7 +51,7 @@ function registro(){
         console.log(parametros);
         $.ajax({
                 data:  parametros,
-                url:   'index.php?/ticket/registro',
+                url:   'index.php?/base/registro',
                 type:  'post',
                 beforeSend: function () {
                         $("#resultado").html("Procesando, espere por favor...");
@@ -84,7 +84,7 @@ function folioPlataforma()
 {
      $.ajax({
                 //data:  parametros,
-                url:   'index.php?/ticket/folio_plataforma',
+                url:   'index.php?/base/folio_plataforma',
                 type:  'post',
                 beforeSend: function () {
                       //  $("#resultado").html("Procesando, espere por favor...");

@@ -50,6 +50,30 @@ class m_base extends CI_Model {
         return json_encode($array);
     }
 
+
+    function obt_seguimiento($folio)
+    {
+   $qry = "SELECT
+            usuario.usuario,
+            b.oficio,
+            dependencias.nombre_dependencia,
+            b.dependencia,
+            fecha_seguimiento as fecha,
+            seguimiento
+            FROM
+            b_seguimiento b
+            LEFT JOIN usuario ON usuario.codigo = escribiente
+            LEFT JOIN dependencias ON  dependencias.id_dependencia = b.dependencia
+            INNER JOIN b_registros r
+            WHERE r.id = $folio
+            AND r.id = b.registro";
+
+        return $this->db->query($qry)->result();
+    }
+
+
+
+
     function obt_puestos()
     {
 

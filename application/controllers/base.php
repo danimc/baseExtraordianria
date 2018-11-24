@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ticket extends CI_Controller {
+class Base extends CI_Controller {
 	
 	 function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('m_seguridad',"",TRUE);
 		$this->load->model('m_usuario',"",TRUE);
-		$this->load->model('m_ticket',"",TRUE);
-		$this->load->model('m_correos',"",TRUE);
 		$this->load->model('m_base',"",TRUE);
+		$this->load->model('m_correos',"",TRUE);
+		$this->load->model('m_ticket',"",TRUE);
 
 	}
 
@@ -119,17 +119,17 @@ class Ticket extends CI_Controller {
 		switch ($rol) {
 			case 1:
 				
-				$datos['tickets'] = $this->m_ticket->lista_tickets_administrador();
+				$datos['bases'] = $this->m_base->lista_bases_administrador();
 				$this->load->view('_encabezado');
 				$this->load->view('_menuLateral');
-				$this->load->view('listas/l_tickets_admin', $datos);
+				$this->load->view('listas/l_bases_admin', $datos);
 				$this->load->view('_footer');
 				break;
 			case 2:
-				$datos['tickets'] = $this->m_ticket->lista_tickets_usuario($codigo);
+				$datos['bases'] = $this->m_base->lista_bases_usuario($codigo);
 				$this->load->view('_encabezado');
 				$this->load->view('_menuLateral');
-				$this->load->view('listas/l_tickets_usuarios', $datos);
+				$this->load->view('listas/l_bases_usuarios', $datos);
 				$this->load->view('_footer');
 				break;
 			default:
@@ -151,9 +151,9 @@ class Ticket extends CI_Controller {
 		$datos['conceptos'] = $this->m_base->obt_conceptos();
 		$datos['sexo'] = $this->m_base->obt_sexo();
 		$datos['sanciones'] = $this->m_base->obt_sanciones();
-		$datos['asignados'] = $this->m_ticket->obt_asignados();
+		//$datos['asignados'] = $this->m_base->obt_asignados();
 
-		$datos['seguimiento'] = $this->m_ticket->obt_seguimiento($folio);
+		$datos['seguimiento'] = $this->m_base->obt_seguimiento($folio);
 		$datos['fecha'] = $this->m_ticket->fecha_text($fecha->fecha);
 
 		$this->load->view('_encabezado');
@@ -177,9 +177,6 @@ class Ticket extends CI_Controller {
 		$datos['denunciados'] = $this->m_base->obt_denunciados();
 		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['sexo'] = $this->m_base->obt_sexo();
-		$datos['asignados'] = $this->m_ticket->obt_asignados();
-		$datos['categorias'] = $this->m_ticket->obt_categorias();
-		$datos['seguimiento'] = $this->m_ticket->obt_seguimiento($folio);
 
 		//if ($dependencia == 1 || $dependencia == 2) {
 			
@@ -254,12 +251,12 @@ class Ticket extends CI_Controller {
 		  $codigo = $this->session->userdata("codigo");	
 		  $ingeniero = $_POST['ingeniero'];
 		  $folio = $_POST['folio'];
-		  $fecha= $this->m_ticket->fecha_actual();
-		  $hora= $this->m_ticket->hora_actual();
+		  $fecha= $this->m_base->fecha_actual();
+		  $hora= $this->m_base->hora_actual();
 		  $usr = $this->m_usuario->obt_usuario($codigo);
 
-		  $this->m_ticket->asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
-		  $this->m_ticket->h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
+		  $this->m_base->asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
+		  $this->m_base->h_asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus);
 
 	    $msg = '<div class="alert alert-success"><p><i class="fa fa-check"></i>Se ha Asignado con Exito</p></div>';
 
@@ -298,7 +295,7 @@ class Ticket extends CI_Controller {
 		
 	
 		$msg = new \stdClass();
-			//$this->m_ticket->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
+			//$this->m_base->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
 
 			 $msg->id = 1;
 			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Se cambio es estatus</p></div>';
@@ -316,15 +313,15 @@ class Ticket extends CI_Controller {
 						'oficio' 		=> $_POST['oficio'],
 						'escribiente' 	=> $this->session->userdata('codigo'),
 						'dependencia' 	=> $_POST['dependencia'],
-						'fecha'			=> $this->m_ticket->fecha_actual(),
-						'hora' 			=> $this->m_ticket->hora_actual(),
+						'fecha'			=> $this->m_base->fecha_actual(),
+						'hora' 			=> $this->m_base->hora_actual(),
 						'seguimiento' 	=> $_POST['seguimiento'],
 						'fecha_seguimiento' => $_POST['fecha']
 						);
 		$this->m_base->insertar_seguimiento($seguimiento);
 
 		$msg = new \stdClass();
-			//$this->m_ticket->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
+			//$this->m_base->h_cambiar_estatus($folio, $estatus, $fecha, $hora);
 
 			 $msg->id = 1;
 			 $msg->mensaje = '<div class="alert alert-success"><p><i class="fa fa-check"></i> Seguimiento Añadido</p></div>';
@@ -332,14 +329,14 @@ class Ticket extends CI_Controller {
 
 		echo json_encode($msg);
 
-		//redirect('ticket/ver_registro/'.$folio);
+		//redirect('base/ver_registro/'.$folio);
 	}
 
-	function correo_ticket_levantado()
+	function correo_base_levantado()
 	{
 		$incidente = $this->uri->segment(3);
-		$infoCorreo = $this->m_ticket->seguimiento_ticket($incidente);
-		$horario = $this->m_ticket->hora_actual();
+		$infoCorreo = $this->m_base->seguimiento_base($incidente);
+		$horario = $this->m_base->hora_actual();
 		$saludo = '';
 
 		if($horario <= '11:59:59'){
@@ -352,7 +349,7 @@ class Ticket extends CI_Controller {
 			$saludo = 'Buenas noches';
 		}
 		
-		$datos['ticket'] = $infoCorreo;
+		$datos['base'] = $infoCorreo;
 		$datos['saludo'] = $saludo;		
 	    $this->load->view('_head');
 		$msg = $this->load->view('correos/c_nuevoTicket', $datos, true);
@@ -368,7 +365,7 @@ class Ticket extends CI_Controller {
 		$this->email->set_mailtype('html');
 		$this->email->send();
 
-		redirect('ticket/lista_tickets/'. $incidente);
+		redirect('base/lista_bases/'. $incidente);
 
 	//	echo $this->email->print_debugger();
 
@@ -386,7 +383,7 @@ class Ticket extends CI_Controller {
 	{
 		$folio = $_POST['folio'];
 
-		$seguimiento = $this->m_ticket->obt_seguimiento($folio);
+		$seguimiento = $this->m_base->obt_seguimiento($folio);
 
 		//echo json_encode($seguimiento);
 
@@ -401,7 +398,7 @@ class Ticket extends CI_Controller {
                 <tbody>';
 
               	foreach ($seguimiento as $mensaje){
-                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
+                	$fecha = $this->m_base->hora_fecha_text($mensaje->fecha);
                 	if ($mensaje->dependencia == 5) { 
 
                   		$msg .=' <tr class="">
@@ -432,7 +429,7 @@ class Ticket extends CI_Controller {
 	{
 		$folio = $_POST['folio'];
 
-		$seguimiento = $this->m_ticket->obt_seguimiento($folio);
+		$seguimiento = $this->m_base->obt_seguimiento($folio);
 
 		$msg = '<table id="example2" class="table  table-hover table-striped">
                 <thead>
@@ -445,7 +442,7 @@ class Ticket extends CI_Controller {
                 <tbody>';
 
               	foreach ($seguimiento as $mensaje){
-                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
+                	$fecha = $this->m_base->hora_fecha_text($mensaje->fecha);
                 	if ($mensaje->dependencia == 8) { 
 
                   		$msg .=' <tr class="">
@@ -476,7 +473,7 @@ class Ticket extends CI_Controller {
 	{
 		$folio = $_POST['folio'];
 
-		$seguimiento = $this->m_ticket->obt_seguimiento($folio);
+		$seguimiento = $this->m_base->obt_seguimiento($folio);
 
 		$msg = '<table id="example3" class="table  table-hover table-striped">
                 <thead>
@@ -489,7 +486,7 @@ class Ticket extends CI_Controller {
                 <tbody>';
 
               	foreach ($seguimiento as $mensaje){
-                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
+                	$fecha = $this->m_base->hora_fecha_text($mensaje->fecha);
                 	if ($mensaje->dependencia == 7) { 
 
                   		$msg .=' <tr class="">

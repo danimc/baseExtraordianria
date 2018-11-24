@@ -31,7 +31,7 @@
                 <li><a href="/index"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Ver Registro</li>
             </ol>
-            <a href="<?=base_url()?>index.php?/ticket/lista_registros" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
+            <a href="<?=base_url()?>index.php?/base/lista_registros" class="btn btn-app bg-blue"><i class="fa fa-arrow-left"></i>Regresar</a>
         </section>
 
 
@@ -423,7 +423,7 @@
 
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/seguimiento",
+      url: "<?=base_url()?>index.php?/base/seguimiento",
       data: formulario,
         }).done(function(respuesta){
             recargaColegiados();
@@ -446,7 +446,7 @@
 
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/seguimiento",
+      url: "<?=base_url()?>index.php?/base/seguimiento",
       data: formulario,
         }).done(function(respuesta){
             recargaPenal();
@@ -468,7 +468,7 @@
 
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/seguimiento",
+      url: "<?=base_url()?>index.php?/base/seguimiento",
       data: formulario,
         }).done(function(respuesta){
             recargaLaboral();
@@ -491,7 +491,7 @@
     $.ajax({  
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/obt_seguimiento_colegiados",
+      url: "<?=base_url()?>index.php?/base/obt_seguimiento_colegiados",
       data: formulario,
     }).done(function(respuesta){
      $("#ex1").html(respuesta.mensaje);
@@ -514,7 +514,7 @@
     $.ajax({  
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/obt_seguimiento_penal",
+      url: "<?=base_url()?>index.php?/base/obt_seguimiento_penal",
       data: formulario,
     }).done(function(respuesta){
      $("#ex2").html(respuesta.mensaje);
@@ -538,7 +538,7 @@
     $.ajax({  
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/obt_seguimiento_laboral",
+      url: "<?=base_url()?>index.php?/base/obt_seguimiento_laboral",
       data: formulario,
     }).done(function(respuesta){
      $("#ex3").html(respuesta.mensaje);
@@ -561,7 +561,7 @@
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/asignar_sancion",
+      url: "<?=base_url()?>index.php?/base/asignar_sancion",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);
@@ -577,7 +577,7 @@
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/asignar_sancion",
+      url: "<?=base_url()?>index.php?/base/asignar_sancion",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);
@@ -593,7 +593,7 @@
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url: "<?=base_url()?>index.php?/ticket/asignar_sancion",
+      url: "<?=base_url()?>index.php?/base/asignar_sancion",
       data: formulario,
     }).done(function(respuesta){
        $("#mensaje").html(respuesta.mensaje);

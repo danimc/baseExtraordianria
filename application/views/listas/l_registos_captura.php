@@ -90,10 +90,10 @@ $estados = $this->m_ticket->estatus();
              $accesoActivos = $this->m_seguridad->acceso_modulo(1);
              if ($accesoActivos != 0) {
             ?>
-            <a class="btn btn-info btn-xs " href="<?=base_url()?>index.php?/ticket/editar_captura/<?=$registro->id?>" title="Editar Captura de Entrada"><i class="fa fa-edit"></i> Editar </a>
+            <a class="btn btn-info btn-xs " href="<?=base_url()?>index.php?/base/editar_captura/<?=$registro->id?>" title="Editar Captura de Entrada"><i class="fa fa-edit"></i> Editar </a>
             <?}?>
              <hr>
-            <a class="btn btn-danger btn-xs" href="<?=base_url()?>index.php?/ticket/ver_registro/<?=$registro->id?>" title="Abrir Registro"><i class="fa fa-eye"></i> Abrir  </a>
+            <a class="btn btn-danger btn-xs" href="<?=base_url()?>index.php?/base/ver_registro/<?=$registro->id?>" title="Abrir Registro"><i class="fa fa-eye"></i> Abrir  </a>
           </td>     
             </tr>
             <?

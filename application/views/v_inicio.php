@@ -19,7 +19,7 @@
              if ($accesoActivos != 0) {
             ?>
                   
-            <a href="<?=base_url()?>index.php?/ticket/nuevo_registro">
+            <a href="<?=base_url()?>index.php?/base/nuevo_registro">
               <div class="col-md-3 col-sm-6 col-xs-12">           
                 <div class="info-box bg-orange-active">
                   <span class="info-box-icon"><i class="fa fa-ticket"></i></span>
@@ -38,7 +38,7 @@
             </a>
             <?}?>
 
-            <a href="<?=base_url()?>index.php?/ticket/lista_registros">
+            <a href="<?=base_url()?>index.php?/base/lista_registros">
               <div class="col-md-3 col-sm-6 col-xs-12">           
                 <div class="info-box bg-blue-active">
                   <span class="info-box-icon"><i class="fa fa-list"></i></span>

@@ -83,27 +83,6 @@ class m_ticket extends CI_Model {
         return $this->db->query($qry)->row();
     }
 
-    function obt_seguimiento($folio)
-    {
-   $qry = "SELECT
-            usuario.usuario,
-            b.oficio,
-            dependencias.nombre_dependencia,
-            b.dependencia,
-            fecha_seguimiento as fecha,
-            seguimiento
-            FROM
-            b_seguimiento b
-            LEFT JOIN usuario ON usuario.codigo = escribiente
-            LEFT JOIN dependencias ON  dependencias.id_dependencia = b.dependencia
-            INNER JOIN b_registros r
-            WHERE r.id = $folio
-            AND r.id = b.registro";
-
-        return $this->db->query($qry)->result();
-    }
-
-
 
     function asignar_usuario($folio, $ingeniero, $fecha, $hora, $estatus)
     {
