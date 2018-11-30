@@ -57,6 +57,7 @@ class m_base extends CI_Model {
             usuario.usuario,
             b.oficio,
             dependencias.nombre_dependencia,
+            dependencias.abreviatura,
             b.dependencia,
             fecha_seguimiento as fecha,
             seguimiento

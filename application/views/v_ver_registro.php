@@ -62,38 +62,37 @@
                                 <h4 class="box-tittle"> Información de Registro</h4>
                             </div>
                             <div class="box-body">
-                                <h5><strong><i class="fa fa-calendar margin-r-5"></i>Fecha de Recepción: </strong>
+                                <strong><i class="fa fa-calendar margin-r-5"></i>Fecha de Recepción: </strong>
                                     <?=$fecha?>
-                                </h5>
-                                <hr>
-                                <h5><strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> N° Consecutivo: </strong>
+                                    <hr>
+                                <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> N° Consecutivo: </strong>
                                     <?=$registro->consecutivo ?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa fa-file-text-o margin-r-5"></i> Oficio: </strong>
+                                <strong><i class="fa fa-file-text-o margin-r-5"></i> Oficio: </strong>
                                     <?=$registro->oficio?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa fa-user margin-r-5"></i> Remitente:</strong>
+                                <strong><i class="fa fa-user margin-r-5"></i> Remitente:</strong>
                                     <?=$registro->remitente?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa fa-black-tie margin-r-5"></i>Puesto: </strong>
+                                <strong><i class="fa fa-black-tie margin-r-5"></i>Puesto: </strong>
                                     <?=$registro->puesto?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa fa-institution margin-r-5"></i> Dependencia: </strong>
+                                <strong><i class="fa fa-institution margin-r-5"></i> Dependencia: </strong>
                                     <?=$registro->dependencia?>
-                                </h5>
+                                
                                 <hr>
 
-                                <h5><strong><i class="fa  fa-exclamation-circle margin-r-5"></i> Conducta: </strong>
+                                <strong><i class="fa  fa-exclamation-circle margin-r-5"></i> Conducta: </strong>
                                     <?=$registro->concepto?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa  fa-indent margin-r-5"></i> Resumen:</strong>
+                                <strong><i class="fa  fa-indent margin-r-5"></i> Resumen:</strong>
                                     <?=$registro->asunto?>
-                                </h5>
+                                
                                 <hr>
                             </div>
                         </div>
@@ -107,21 +106,20 @@
                                 <h4 class="box-tittle"> Datos Victima</h4>
                             </div>
                             <div class="box-body">
-                                <h5><strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Nombre: </strong>
+                                <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Nombre: </strong>
                                     <?=$registro->denunciante ?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa fa-file-text-o margin-r-5"></i> Tipo: </strong>
+                               <strong><i class="fa fa-file-text-o margin-r-5"></i> Tipo: </strong>
                                     <?=$registro->sujeto1?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Sexo: </strong>
+                                <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Sexo: </strong>
                                     <?=$registro->sexo1 ?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa fa-file-text-o margin-r-5"></i> Edad: </strong>
-                                    <?=$edad1?>
-                                </h5>
+                                <strong><i class="fa fa-file-text-o margin-r-5"></i> Edad: </strong>
+                                    <?=$edad1?>                                
                                 <hr>
                             </div>
                         </div>
@@ -133,21 +131,18 @@
                                 <h4 class="box-tittle"> Datos Denunciado</h4>
                             </div>
                             <div class="box-body">
-                                <h5><strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Nombre: </strong>
+                               <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Nombre: </strong>
                                     <?=$registro->denunciado ?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa fa-file-text-o margin-r-5"></i> Tipo: </strong>
+                                <strong><i class="fa fa-file-text-o margin-r-5"></i> Tipo: </strong>
                                     <?=$registro->sujeto2?>
-                                </h5>
+                                
                                 <hr>
-                                <h5><strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Sexo: </strong>
-                                    <?=$registro->sexo2 ?>
-                                </h5>
+                                <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Sexo: </strong>
+                                    <?=$registro->sexo2 ?>                                
                                 <hr>
-                                <h5><strong><i class="fa fa-file-text-o margin-r-5"></i> Edad: </strong>
-                                    <?=$edad2?>
-                                </h5>
+                                <strong><i class="fa fa-file-text-o margin-r-5"></i> Edad: </strong>
                                 <hr>
                             </div>
                         </div>
@@ -161,7 +156,7 @@
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#tab_0" data-toggle="tab" aria-expanded="false"><b>Resumen General</b> </a></li>
-                                    <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="false">Organos Colegiados</a></li>
+                                    <li class="info"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Organos Colegiados</a></li>
                                     <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Area Penal</a></li>
                                     <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="true">Unidad Laboral</a></li>
                                 </ul>
@@ -184,19 +179,19 @@
                     <div id="ex0"></div>           
 
                             <?
-                    if($dependencia == 5){?> 
+                  //  if($dependencia == 5){?> 
 
                     <div id="alertaG"></div>
                     <form id="frmColegiados">
-                    <div class="col-xs-2">
+                    <!--<div class="col-xs-2">
                         <b>Oficio:</b>
                     <input type="text" class="form-control" name="oficio">
-                    </div>
+                    </div>-->
                     <div class="col-md-2 form-group">
                         <b>Fecha:</b>
                         <input type="date" class="form-control" name="fecha">
                     </div>
-                    <div class="col-xs-8">
+                    <div class="col-xs-10">
                       <b>Registro de Seguimiento:</b>
                     <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
                     </div>
@@ -207,7 +202,7 @@
                     <button type="submit" id="btnColegiados" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
                 
 
-                  <?}?>
+                  <?//}?>
 
                      </div>
     <!--------------------------------------------------------- AREA COLEGIADOS ------------------------------------------------->
@@ -451,6 +446,7 @@
 
     <script>
      $( function(){
+        recargaGeneral();
         recargaColegiados();
         recargaPenal();
         recargaLaboral();
@@ -521,6 +517,29 @@
         });
     });
 
+     function recargaGeneral()
+    {
+    var formulario = { 
+        "folio" : <?=$folio?> 
+    };
+    console.log(formulario)
+    $.ajax({  
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/base/obt_seguimiento_general",
+      data: formulario,
+    }).done(function(respuesta){
+     $("#ex0").html(respuesta.mensaje);
+     $("#example0").DataTable({
+           "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": false,
+                    "info": true,
+                    "autoWidth": true
+            });
+        });
+    }
 
     function recargaColegiados()
     {

@@ -379,6 +379,66 @@ class Base extends CI_Controller {
 		$this->load->view('i_impresion_base', $datos);
 	}
 
+
+	function obt_seguimiento_general()
+	{
+		$folio = $_POST['folio'];
+
+		$seguimiento = $this->m_base->obt_seguimiento($folio);
+
+		//echo json_encode($seguimiento);
+
+		$msg = '<table id="example0" class="table  table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th width="100px">Oficio</th>
+                        <th width="200px">Fecha/Usuario</th>
+                        <th>Dependencia </th>
+                        <th>Seguimiento</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+              	foreach ($seguimiento as $mensaje){
+                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
+                	if($mensaje->dependencia == 5 ){
+                		$color = "info";
+                	}
+                	if ($mensaje->dependencia == 7) {
+                		$color = "warning";
+                	}
+                	if ($mensaje->dependencia == 8) {
+                		$color = "success";
+                	}
+           
+                	
+
+                  		$msg .=' <tr class="'. $color . '">
+                    		<td>
+                    	   	' .$mensaje->oficio . '
+                    	 	</td>
+                    	 	<td>
+                    	 	' .$fecha . ' <br>
+                    	 	<b>' .$mensaje->usuario . '</b>
+                    	 	</td>
+                    	 	<td>
+                    	   	' .$mensaje->abreviatura . '
+                    	 	</td>
+                    	 	<td>
+                    	    ' .$mensaje->seguimiento . '
+                    		</td>
+                        </tr>';
+                    }
+        $msg .= '</tbody> </table>';
+
+       $respuesta = new \stdClass();
+		$respuesta->id = 1;
+		$respuesta->mensaje = $msg;
+
+	echo json_encode($respuesta);
+
+	}
+
 	function obt_seguimiento_colegiados()
 	{
 		$folio = $_POST['folio'];
@@ -398,7 +458,7 @@ class Base extends CI_Controller {
                 <tbody>';
 
               	foreach ($seguimiento as $mensaje){
-                	$fecha = $this->m_base->hora_fecha_text($mensaje->fecha);
+                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
                 	if ($mensaje->dependencia == 5) { 
 
                   		$msg .=' <tr class="">
@@ -442,7 +502,7 @@ class Base extends CI_Controller {
                 <tbody>';
 
               	foreach ($seguimiento as $mensaje){
-                	$fecha = $this->m_base->hora_fecha_text($mensaje->fecha);
+                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
                 	if ($mensaje->dependencia == 8) { 
 
                   		$msg .=' <tr class="">
@@ -486,7 +546,7 @@ class Base extends CI_Controller {
                 <tbody>';
 
               	foreach ($seguimiento as $mensaje){
-                	$fecha = $this->m_base->hora_fecha_text($mensaje->fecha);
+                	$fecha = $this->m_ticket->hora_fecha_text($mensaje->fecha);
                 	if ($mensaje->dependencia == 7) { 
 
                   		$msg .=' <tr class="">
