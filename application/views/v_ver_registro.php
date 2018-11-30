@@ -179,30 +179,30 @@
                     <div id="ex0"></div>           
 
                             <?
-                  //  if($dependencia == 5){?> 
+                    if($dependencia == 5 || $dependencia == 8 || $dependencia == 7 || $dependencia == 1){?> 
 
                     <div id="alertaG"></div>
-                    <form id="frmColegiados">
-                    <!--<div class="col-xs-2">
+                    <form id="frmGeneral">
+                    <div class="col-xs-2">
                         <b>Oficio:</b>
                     <input type="text" class="form-control" name="oficio">
-                    </div>-->
+                    </div>
                     <div class="col-md-2 form-group">
                         <b>Fecha:</b>
                         <input type="date" class="form-control" name="fecha">
                     </div>
-                    <div class="col-xs-10">
+                    <div class="col-xs-8">
                       <b>Registro de Seguimiento:</b>
                     <textarea id="seguimiento" required name="seguimiento" class="form-control" placeholder="Ingrese su Mensaje"></textarea>
                     </div>
                     <input type="hidden" name="folio" value="<?=$folio?>">
-                    <input type="hidden" name="dependencia" value="5">
+                    <input type="hidden" name="dependencia" value="<?=$dependencia?>">
                     <br>
                       </form>
-                    <button type="submit" id="btnColegiados" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+                    <button type="submit" id="btnGeneral" class="btn btn-success"><i class="fa fa-comment"></i> Capturar Seguimiento</button>
                 
 
-                  <?//}?>
+                  <?}?>
 
                      </div>
     <!--------------------------------------------------------- AREA COLEGIADOS ------------------------------------------------->
@@ -246,7 +246,7 @@
                     <input type="hidden" name="dependencia" value="5">
                     <br>
                       </form>
-                    <button type="submit" id="btnColegiados" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+                    <button type="submit" id="btnColegiados" class="btn btn-success"><i class="fa fa-comment"></i> Capturar Seguimiento</button>
                 
 
                   <?}?>
@@ -292,7 +292,7 @@
                     <input type="hidden" name="dependencia" value="8">
                     <br>                    
                     </form>
-                    <button type="submit" id="btnPenal" class="btn btn-success"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+                    <button type="submit" id="btnPenal" class="btn btn-success"><i class="fa fa-comment"></i> Capturar Seguimiento</button>
                   <?}?>
                     </div>
         <!-- #####################################AREA 3 LABORAL ###################################################-->
@@ -336,7 +336,7 @@
                       <input type="hidden" name="dependencia" value="7">
                     <br>                    
                     </form>
-                    <button type="submit" id="btnLaboral" class="btn btn-success btn-xs-3"><i class="fa fa-comment"></i> Enviar Mensaje</button>
+                    <button type="submit" id="btnLaboral" class="btn btn-success btn-xs-3"><i class="fa fa-comment"></i> Capturar Seguimiento</button>
 
                   <?}?>   
                                     </div>
@@ -452,6 +452,29 @@
         recargaLaboral();
      });
 
+    $("#btnGeneral").click(function()
+    {
+    var formulario = $("#frmGeneral").serializeArray();
+    $.ajax({
+
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/base/seguimiento",
+      data: formulario,
+        }).done(function(respuesta){
+            recargaGeneral();
+            $("#alertaC").fadeIn(500);
+            $('#alertaC').html(respuesta.mensaje);
+            setTimeout(function() {
+        $("#alertaC").fadeOut(1500);
+    },1000);
+
+
+       
+      });
+    });
+
+     //FORM SEGUIMIENTO COLEGIADOS
     $("#btnColegiados").click(function()
     {
     var formulario = $("#frmColegiados").serializeArray();

@@ -313,8 +313,8 @@ class Base extends CI_Controller {
 						'oficio' 		=> $_POST['oficio'],
 						'escribiente' 	=> $this->session->userdata('codigo'),
 						'dependencia' 	=> $_POST['dependencia'],
-						'fecha'			=> $this->m_base->fecha_actual(),
-						'hora' 			=> $this->m_base->hora_actual(),
+						'fecha'			=> $this->m_ticket->fecha_actual(),
+						'hora' 			=> $this->m_ticket->hora_actual(),
 						'seguimiento' 	=> $_POST['seguimiento'],
 						'fecha_seguimiento' => $_POST['fecha']
 						);
