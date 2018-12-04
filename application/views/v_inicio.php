@@ -126,8 +126,8 @@
                 <div class="col-sm-4 col-xs-6">
                   <div class="description-block border-right">
                     
-                    <h5 class="description-header">REGISTROS CON MULTIPLES CONDUCTAS</h5>
-                    <span class="description-text"><?=$multiple?></span>
+                    <h5 class="description-header">REGISTROS CLASIFICADOS</h5>
+                    <span class="description-text"><?=$una?></span>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -135,8 +135,8 @@
                 <div class="col-sm-4 col-xs-6">
                   <div class="description-block border-right">
                
-                    <h5 class="description-header">REGISTROS CON SOLO UNA CONDUCTA</h5>
-                    <span class="description-text"><?=$una?></span>
+                    <h5 class="description-header">REGISTROS POR CLASIFICAR</h5>
+                    <span class="description-text"><?=$multiple?></span>
                   </div>
                   <!-- /.description-block -->
                 </div>

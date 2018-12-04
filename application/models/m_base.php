@@ -31,6 +31,12 @@ class m_base extends CI_Model {
         return $this->db->get('b_sanciones')->result();
     }
 
+
+    function obt_conductas()
+    {
+        return $this->db->get('b_conceptoreporte')->result();
+    }
+
     function obt_remitentes()
     {
         $qry = "";
@@ -133,6 +139,7 @@ class m_base extends CI_Model {
         return json_encode($array);
     }
 
+
     function obtFolioPlataforma()
     {
 
@@ -181,6 +188,15 @@ class m_base extends CI_Model {
 
     }
 
+    function asignar_conducta($folio, $conducta)
+    {
+        $this->db->set('concepto', $conducta);
+        $this->db->where('id', $folio);
+
+        $this->db->update('b_registros');
+
+    }
+
     function registrar_conductas($registro, $key)
     {
         $qry = "";
@@ -217,8 +233,7 @@ class m_base extends CI_Model {
                 sancionP.nombre as sancionP,
                 sancionL.nombre as sancionL,
                 sancionC.nombre as sancionC,
-                GROUP_CONCAT( c.nombre 
-                    SEPARATOR ', ') as concepto
+                c.nombre as concepto
                 FROM
                 b_registros b
                 LEFT JOIN
@@ -236,7 +251,7 @@ class m_base extends CI_Model {
                 LEFT JOIN 
                 b_conductas conducta ON conducta.registro = b.id
                 LEFT JOIN 
-                b_conceptoreporte c ON c.id = conducta.conducta
+                b_conceptoreporte c ON c.id = b.concepto
                 LEFT JOIN 
                 b_sanciones sancionP ON sancionP.id = b.sancion_penal
                 LEFT JOIN 
@@ -247,6 +262,8 @@ class m_base extends CI_Model {
 
         return $this->db->query($qry)->result();
     }
+
+    
 
     function seguimiento_registro($id)
     {
@@ -306,6 +323,71 @@ class m_base extends CI_Model {
                 b_conductas conducta ON conducta.registro = b.id
                 LEFT JOIN 
                 b_conceptoreporte c ON c.id = conducta.conducta
+                WHERE 
+                b.registrador = u.codigo
+                AND
+                b.id = $id
+                group by b.id";
+
+        return $this->db->query($qry)->row();
+    }
+
+    function seguimiento_registro_un_concepto($id)
+    {
+               $qry = "";
+
+        $qry = "SELECT
+                b.id,
+                b.consecutivo,
+                b.oficio,
+                b.remitente,
+                b.dependencia as idDependencia,
+                d.nombre as dependencia,
+                b.puesto,
+                b.asunto,
+                b.fecha,
+                b.hora,
+                u.usuario,
+                b.denunciado,
+                b.denunciante,
+                su1.nombre as sujeto1,
+                b.sujetoDenunciante,
+                b.edadDenunciante,
+                x1.nombre as sexo1,
+                b.sexoDenunciante,
+                su2.nombre as sujeto2,
+                b.sujetoDenunciado,
+                b.edadDenunciado,
+                x2.nombre as sexo2,
+                b.sexoDenunciado,
+                c.nombre as concepto, 
+                sc.nombre as sancionColegiados,
+                sp.nombre as sancionPenal,
+                sl.nombre as sancionLaboral
+                FROM
+                b_registros b
+                LEFT JOIN
+                b_dependencias d ON b.dependencia = d.id
+                LEFT JOIN 
+                usuario u ON b.registrador = u.codigo
+                LEFT JOIN 
+                b_sujetos su1 ON b.sujetoDenunciante = su1.id
+                LEFT JOIN 
+                b_sexo x1 ON b.sexoDenunciante = x1.id
+                LEFT JOIN 
+                b_sujetos su2 ON b.sujetoDenunciado = su2.id
+                LEFT JOIN 
+                b_sexo x2 ON b.sexoDenunciado = x2.id
+                LEFT JOIN 
+                b_sanciones sc ON sc.id = b.sancion_colegiados
+                LEFT JOIN 
+                b_sanciones sp ON sp.id = b.sancion_penal
+                LEFT JOIN 
+                b_sanciones sl ON sl.id = b.sancion_laboral
+                LEFT JOIN 
+                b_conductas conducta ON conducta.registro = b.id
+                LEFT JOIN 
+                b_conceptoreporte c ON c.id = b.concepto
                 WHERE 
                 b.registrador = u.codigo
                 AND

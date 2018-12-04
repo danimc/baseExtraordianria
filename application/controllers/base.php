@@ -144,14 +144,14 @@ class Base extends CI_Controller {
 		$fecha = $this->m_base->obt_datetime($folio);
 		$datos['dependencia'] = $this->session->userdata("dependencia");
 		$datos['folio'] = $folio;
-		$datos['registro'] = $this->m_base->seguimiento_registro($folio);
+		$datos['registro'] = $this->m_base->seguimiento_registro_un_concepto($folio);
 		$datos['centros'] = $this->m_base->obt_centros();
 		$datos['centros'] = $this->m_base->obt_centros();
 		$datos['sujetos'] = $this->m_base->obt_sujetos();
 		$datos['conceptos'] = $this->m_base->obt_conceptos();
 		$datos['sexo'] = $this->m_base->obt_sexo();
 		$datos['sanciones'] = $this->m_base->obt_sanciones();
-		//$datos['asignados'] = $this->m_base->obt_asignados();
+		$datos['conductas'] = $this->m_base->obt_conductas();
 
 		$datos['seguimiento'] = $this->m_base->obt_seguimiento($folio);
 		$datos['fecha'] = $this->m_ticket->fecha_text($fecha->fecha);
@@ -305,11 +305,25 @@ class Base extends CI_Controller {
 
 	}
 
+	function asignar_conducta()
+	{
+		$folio = $_POST['folio'];
+		$conducta = $_POST['conducta'];
+		$dependencia = $_POST['dependencia'];
+		$escribiente = $this->session->userdata('codigo');
+
+		$this->m_base->asignar_conducta($folio, $conducta);
+
+
+		echo json_encode($this->db->affected_rows());
+
+	}
+
 	function seguimiento()
 	{
 		$folio = $_POST['folio'];
 		$seguimiento = array(
-						'registro'			=> $_POST['folio'],
+						'registro'		=> $_POST['folio'],
 						'oficio' 		=> $_POST['oficio'],
 						'escribiente' 	=> $this->session->userdata('codigo'),
 						'dependencia' 	=> $_POST['dependencia'],

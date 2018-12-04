@@ -85,10 +85,9 @@
                                     <?=$registro->dependencia?>
                                 
                                 <hr>
-
+                                <a href="#" data-toggle="modal" data-target="#conducta""><span class="pull-right badge bg-blue"><i class="fa fa-pencil"></i> Asignar conducta</span></a>
                                 <strong><i class="fa  fa-exclamation-circle margin-r-5"></i> Conducta: </strong>
-                                    <?=$registro->concepto?>
-                                
+                                    <?=$registro->concepto?>                                
                                 <hr>
                                 <strong><i class="fa  fa-indent margin-r-5"></i> Resumen:</strong>
                                     <?=$registro->asunto?>
@@ -352,7 +351,37 @@
         </section>
         </div>
 
+<!-- ############################# Modal para asignar Conducta ###############################################--->
+    <form id="frmConducta">
+     <div class="modal fade" id="conducta" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-red">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">¡Asignar Conducta! </h4>
+            </div>
+            <div class="modal-body">
+              <p>Seleccione la conducta correspondiente:</p>
+                <select name="conducta" class="form-control">
+                  <option disabled>Selecciones una Conducta</option>
+                  <?
+                  foreach ($conductas as $conducta) {?>
+                    <option value="<?=$conducta->id?>"><?=$conducta->nombre?></option>
+                           <?}?>         
+                </select>
+                <input type="hidden" name="dependencia" value="<?=$dependencia?>">
+                <input type="hidden" name="folio" value="<?=$folio?>">
+                </div>
+              <div class="modal-footer">
+                <button type="button" id="btnConducta" class="btn btn-success" data-dismiss="conducta"><i class="fa fa-check"></i></button>
+                <button type="button" class="btn btn-danger" data-dismiss="conducta"><i class="fa fa-close"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
 
+<!--##################################################################################################################-->
     <form id="sancionColegiados">
      <div class="modal fade" id="modalColegiados" role="dialog">
         <div class="modal-dialog">
@@ -466,13 +495,40 @@
             $("#alertaC").fadeIn(500);
             $('#alertaC').html(respuesta.mensaje);
             setTimeout(function() {
-        $("#alertaC").fadeOut(1500);
+        $("#alertaC").fadeOut(500);
     },1000);
 
 
        
       });
     });
+
+    //btn para asignar conductas
+
+    $("#btnConducta").click(function()
+    {
+    var formulario = $("#frmConducta").serializeArray();
+    $.ajax({
+
+      type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/base/asignar_conducta",
+      data: formulario,
+        }).done(function(respuesta){
+
+            if(respuesta == 1) {
+                var btn = "<i class='fa fa-check '></i> Conducta Asignada :)";
+                document.getElementById('btnConducta').innerHTML = btn;
+                setTimeout('document.location.reload()',1000);
+            }
+            else {
+                var btn = "<i class='fa fa-warning '></i> Por favor Seleccione otra :(";
+                document.getElementById('btnConducta').innerHTML = btn;
+            }
+       
+      });
+    });
+
 
      //FORM SEGUIMIENTO COLEGIADOS
     $("#btnColegiados").click(function()

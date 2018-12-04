@@ -39,15 +39,14 @@ class m_inicio extends CI_Model {
     {
         $qry = '';
 
-        $qry ="SELECT 
-                nombre,
-                count(c.conducta) as contador
-                from 
-                b_conceptoreporte r
-                LEFT JOIN 
-                b_conductas c ON c.conducta = r.id
-                group by nombre
-                HAVING COUNT(c.conducta) > 0";
+        $qry =" SELECT 
+                    c.nombre,
+                    count(b.concepto) as contador
+                FROM
+                    b_registros b
+                LEFT JOIN
+                    b_conceptoreporte c ON c.id = b.concepto
+                GROUP BY c.nombre";
 
         $conceptos = $this->db->query($qry)->result();
 
@@ -64,14 +63,13 @@ class m_inicio extends CI_Model {
         $qry = '';
 
         $qry = 'SELECT 
-                nombre,
-                count(c.conducta) as contador
-                from 
-                b_conceptoreporte r
-                LEFT JOIN 
-                b_conductas c ON c.conducta = r.id
-                group by nombre
-                HAVING COUNT(c.conducta) > 0';
+                    c.nombre,
+                    count(b.concepto) as contador
+                FROM
+                    b_registros b
+                LEFT JOIN
+                    b_conceptoreporte c ON c.id = b.concepto
+                GROUP BY c.nombre';
 
         $conceptos = $this->db->query($qry)->result();
 
@@ -95,11 +93,10 @@ class m_inicio extends CI_Model {
         $qry = "";
 
         $qry = "SELECT
-                count(*) as cuenta
+                concepto as cuenta
                 from 
-                b_conductas
-                GROUP BY registro
-                HAVING cuenta > 1";
+                b_registros
+                where concepto = 0";
 
         return $this->db->query($qry)->num_rows();
     }
@@ -108,11 +105,11 @@ class m_inicio extends CI_Model {
         $qry = "";
 
         $qry = "SELECT
-                count(*) as cuenta
+                concepto as cuenta
                 from 
-                b_conductas
-                GROUP BY registro
-                HAVING cuenta = 1";
+                b_registros
+                where concepto != 0";
+
 
         return $this->db->query($qry)->num_rows();
     }
@@ -122,14 +119,13 @@ class m_inicio extends CI_Model {
         $qry = '';
 
         $qry = 'SELECT 
-                nombre,
-                count(c.conducta) as contador
-                from 
-                b_conceptoreporte r
-                LEFT JOIN 
-                b_conductas c ON c.conducta = r.id
-                group by nombre
-                HAVING COUNT(c.conducta) > 0';
+                    c.nombre,
+                    count(b.concepto) as contador
+                FROM
+                    b_registros b
+                LEFT JOIN
+                    b_conceptoreporte c ON c.id = b.concepto
+                GROUP BY c.nombre';
 
         return $this->db->query($qry)->result();
     }
