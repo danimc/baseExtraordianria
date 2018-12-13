@@ -89,6 +89,7 @@
                                 <strong><i class="fa  fa-exclamation-circle margin-r-5"></i> Conducta: </strong>
                                     <?=$registro->concepto?>                                
                                 <hr>
+                                <a href="#" data-toggle="modal" data-target="#conducta""><span class="pull-right badge bg-red"><i class="fa fa-pencil"></i> Capturar</span></a>
                                 <strong><i class="fa  fa-indent margin-r-5"></i> Resumen:</strong>
                                     <?=$registro->asunto?>
                                 
@@ -146,6 +147,130 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-6">
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h4 class="box-tittle"> PANEL ORGANOS COLEGIADOS </h4>
+                            </div>
+                            <div class="box-body">
+                                <table class="table">
+                                <td> <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Expediente: </strong>
+                                    CUCI/RECT/0981/2018
+                                </td>
+                                <td>
+                                     <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Acta:</strong> 200215 
+                                </td>
+                                <tr>
+                                <td colspan="2">
+                                    <a href="#" data-toggle="modal" data-target="#modalColegiados"><span class="pull-right badge bg-navy"><i class="fa fa-pencil"></i> Cambiar</span></a>
+                                     <strong><i class="fa  fa-info margin-r-5"></i> Estado Actual:</strong>
+                                        <?=$registro->asunto?>
+                                    <span class=""> <?=$registro->sancionColegiados?></span>
+                                </td>
+                                   <!--  <td>
+                                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Fecha de Presentacion: </strong>
+                                    <br> 12 de Febrero 2018 
+                                    </td>
+                                    <td class="bg-gray">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Fecha acta circunstanciada: </strong>
+                                    <br> 12 de Febrero 2018 
+                                    </td>
+                                    <tr>
+                                    
+                                    <td class="bg-gray">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Fecha citatorio: </strong>
+                                    <br> 12 de Febrero 2018 
+                                    </td>  
+                                    <td class="">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Forma citatorio: </strong>
+                                    <br> Eléctronico
+                                    </td>  
+                                    <tr>
+                                    <td colspan="2" class="">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Medida cautelar: </strong> Eléctronico
+                                    </td> 
+                                    <tr>
+                                                                      <td class="">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Fecha acta administrativa: </strong>
+                                    <br> 12 de Febrero 2018 
+                                    </td>  
+                                    <td class="bg-gray">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Fecha resolución: </strong>
+                                    <br> Eléctronico
+                                    </td> 
+                                    <tr>
+                                    
+                                    <td class="bg-gray">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Fecha notificación: </strong>
+                                    <br> 12 de Febrero 2018 
+                                    </td>  
+                                    <td class="">
+                                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Forma notificación: </strong>
+                                    <br> Eléctronico
+                                    </td>                         -->       
+                                </table> 
+                              
+                                <hr>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-md-6">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h4 class="box-tittle"> PANEL LABORAL </h4>
+                            </div>
+                            <div class="box-body">
+                                <table class="table">
+                                <td> <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Expediente: </strong>
+                                    CUCI/RECT/0981/2018
+                                </td>
+                                <td>
+                                     <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Acta:</strong> 200215 
+                                </td>
+                                <tr>
+                                <td colspan="2">
+                                    <a href="#" data-toggle="modal" data-target="#modalLaboral"><span class="pull-right badge bg-navy"><i class="fa fa-pencil"></i> Cambiar</span></a>
+                                     <strong><i class="fa  fa-info margin-r-5"></i> Estado Actual:</strong>
+                                        <?=$registro->asunto?>
+                                    <span class=""> <?=$registro->sancionLaboral?></span>
+                                </td>           
+                                </table> 
+                              
+                                <hr>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h4 class="box-tittle"> PANEL ÁREA PENAL </h4>
+                            </div>
+                            <div class="box-body">
+                                <table class="table">
+                                <td>
+                                 <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Expediente: </strong>
+                                    CUCI/RECT/0981/2018
+                                </td>
+                                <td>
+                                     <strong><i class="fa  fa-arrow-circle-o-right margin-r-5"></i> Acta:</strong> 200215 
+                                </td>
+                                <tr>
+                              
+                                <td colspan="2">
+                                    <a href="#" data-toggle="modal" data-target="#modalPenal"><span class="pull-right badge bg-navy"><i class="fa fa-pencil"></i> Cambiar</span></a>
+                                     <strong><i class="fa  fa-info margin-r-5"></i> Estado Actual:</strong>
+                                        <?=$registro->asunto?>
+                                    <span class=""> <?=$registro->sancionPenal?></span>
+                                </td>                                    
+                                </table> 
+                              
+                                <hr>
+                        </div>
+                    </div>
+                </div>
 
                     <div class="col-md-12">
                         <div class="box box-danger">
@@ -207,20 +332,56 @@
     <!--------------------------------------------------------- AREA COLEGIADOS ------------------------------------------------->
 
                     <div class="tab-pane" id="tab_1">
-                        <div class="col-xs-6 " >
+                        <div class="col-xs-12 " >
                             <h4 align="left">Seguimiento del Área <b>Organos Colegiados:</b></h4>
-                            </div>
-                            <div class="col-xs-6" align="right">
-                                <button disabled="<?=$bc?>" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalColegiados" title="Asignar"><i class="fa fa-get-pocket "></i> ESTATUS:  </button>
-                                <?if ($registro->sancionColegiados == null) {?>
-                                    <span class="bg-danger"><b>Sin Definir</b></span>
-                                <?}
-                                else{?>
-                                 <span class="bg-red"><b><?=$registro->sancionColegiados?></b></span>
-                                 <?}?>
-                            </div>
+                        </div>
                         <br><br><br>
-                <hr class="bg-blue">
+                    <div class="row btn-default">
+                        <div class="col-md-6">
+                            <form id="frmCronosCol">
+                                <div class="col-md-4 form-group">
+                                    <label>Acciones:</label>
+                                    <select class="form-control" name="seguimiento">
+                                     <?
+                                    foreach ($cronos as $crono) {?>
+                                        <option value="<?=$crono->id?>"><?=$crono->nombre?></option>
+                                    <?
+                                    } ?>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Fecha:</label>
+                                    <input class="form-control" type="date" name="fecha">                                    
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label>Forma de entrega:</label>
+                                    <select name="forma" class="form-control">
+                                        <option value="0" selected="true"></option>
+                                     <?
+                                    foreach ($formatos as $formas) {?>
+                                        <option value="<?=$formas->id?>"><?=$formas->nombre?></option>
+                                    <?
+                                    } ?>  
+                                    </select>
+
+                                    <input type="hidden" name="dependencia" value="5">
+                                    <input type="hidden" name="folio" value="<?=$folio?>">
+
+                                </div>
+                                </form>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-success form-control" name="btnCronCol" id="btnCronCol"><i class="fa fa-save"></i> <b>Registrar cambio</b></button>
+                                </div>
+                            
+                            
+                            <br><br>
+                        </div>
+                        <div class="col-md-6">
+                            <h4>Historial:</h4>
+                         </div>
+
+                    </div>
+
        
                 <div id="ex1"></div>           
 
@@ -498,8 +659,6 @@
         $("#alertaC").fadeOut(500);
     },1000);
 
-
-       
       });
     });
 
@@ -554,7 +713,7 @@
     });
 
     //FORM  SEGUIMIENTO PENAL
-        $("#btnPenal").click(function()
+    $("#btnPenal").click(function()
     {
     var formulario = $("#frmPenal").serializeArray();
     $.ajax({
@@ -690,6 +849,24 @@
             });
         });
     }
+</script>
+
+<!-- ===================================SCRIPTS PARA EL SEGUIMIENTO CRONOLOGICO =========================-->
+<script>
+    $("#btnCronCol").click(function()
+    {
+    var formulario = $("#frmCronosCol").serializeArray();
+    $.ajax({
+     type: "POST",
+      dataType: 'json',
+      url: "<?=base_url()?>index.php?/base/seguimientoCron",
+      data: formulario,
+        }).done(function(respuesta){
+            console.log(respuesta);
+           // $("#alertaP").fadeIn(500);
+            //$('#alertaP').html(respuesta.mensaje);
+        });
+    });
 </script>
 
 

@@ -31,10 +31,41 @@ class m_base extends CI_Model {
         return $this->db->get('b_sanciones')->result();
     }
 
+    function obt_cronos()
+    {
+        return $this->db->get('b_cat_seguimiento_cronos')->result();
+    }
+
 
     function obt_conductas()
     {
         return $this->db->get('b_conceptoreporte')->result();
+    }
+    function obt_formatos()
+    {
+        return $this->db->get('b_cat_formatos')->result();
+    }
+
+    function obt_registro_seg_colegiados($folio)
+    {
+        $this->db->where('registro', $folio);
+        return $this->db->get('b_seguimiento_colegiados')->num_rows();
+    }
+
+    function insertRegistroColegiados($folio)
+    {
+        $this->registro = $folio;
+        $this->db->insert("b_seguimiento_colegiados", $this);
+       /* $id = $this->db->insert_id();
+        $this->db->close();*/
+    }
+
+    function insertar_cron( $folio, $row, $fecha)
+    {
+        $this->db->set($row, $fecha);
+        $this->db->where('registro', $folio);
+
+        $this->db->update('b_seguimiento_colegiados'); 
     }
 
     function obt_remitentes()
@@ -153,6 +184,14 @@ class m_base extends CI_Model {
         return $this->db->query($qry)->row();
     }
 
+    function obt_nombre_conducta($conducta)
+    {
+        $qry = '';
+
+        $qry = "SELECT nombre FROM b_conceptoreporte WHERE id = $conducta";
+        return $this->db->query($qry)->row();
+    }
+
     function registro_nuevo($datos) 
     {
 
@@ -263,7 +302,7 @@ class m_base extends CI_Model {
         return $this->db->query($qry)->result();
     }
 
-    
+
 
     function seguimiento_registro($id)
     {

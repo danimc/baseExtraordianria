@@ -114,42 +114,23 @@ class Base extends CI_Controller {
 				$this->load->view('listas/l_registos_captura', $datos);
 				$this->load->view('_footer');
 
-
-/*
-		switch ($rol) {
-			case 1:
-				
-				$datos['bases'] = $this->m_base->lista_bases_administrador();
-				$this->load->view('_encabezado');
-				$this->load->view('_menuLateral');
-				$this->load->view('listas/l_bases_admin', $datos);
-				$this->load->view('_footer');
-				break;
-			case 2:
-				$datos['bases'] = $this->m_base->lista_bases_usuario($codigo);
-				$this->load->view('_encabezado');
-				$this->load->view('_menuLateral');
-				$this->load->view('listas/l_bases_usuarios', $datos);
-				$this->load->view('_footer');
-				break;
-			default:
-					echo "no tienes autorizado ingresar a esta sección";
-				break;
-		}		*/
 	}
 
 	function ver_registro($id)
 	{
 		$folio = $this->uri->segment(3);
 		$fecha = $this->m_base->obt_datetime($folio);
-		$datos['dependencia'] = $this->session->userdata("dependencia");
+		$dependencia = $this->session->userdata("dependencia");
+		$datos['dependencia'] = $dependencia;
 		$datos['folio'] = $folio;
 		$datos['registro'] = $this->m_base->seguimiento_registro_un_concepto($folio);
-		$datos['centros'] = $this->m_base->obt_centros();
-		$datos['centros'] = $this->m_base->obt_centros();
-		$datos['sujetos'] = $this->m_base->obt_sujetos();
-		$datos['conceptos'] = $this->m_base->obt_conceptos();
-		$datos['sexo'] = $this->m_base->obt_sexo();
+		//$datos['centros'] = $this->m_base->obt_centros();
+		//$datos['centros'] = $this->m_base->obt_centros();
+		//$datos['sujetos'] = $this->m_base->obt_sujetos();
+	//	$datos['conceptos'] = $this->m_base->obt_conceptos();
+		//$datos['sexo'] = $this->m_base->obt_sexo();
+		$datos['cronos'] = $this->m_base->obt_cronos();
+		$datos['formatos'] = $this->m_base->obt_formatos();
 		$datos['sanciones'] = $this->m_base->obt_sanciones();
 		$datos['conductas'] = $this->m_base->obt_conductas();
 
@@ -305,17 +286,84 @@ class Base extends CI_Controller {
 
 	}
 
+	function seguimientoCron()
+	{
+		$folio = $_POST['folio'];
+		$seguimiento = $_POST['seguimiento'];
+		$dependencia = $_POST['dependencia'];
+		$fecha = $_POST['fecha'];
+		$forma = $_POST['forma'];
+		$row = '';
+		$mensaje = '';
+
+		switch ($seguimiento) {
+			case 1:
+				if ($this->m_base->obt_registro_seg_colegiados($folio) == 0) {
+					
+						$this->m_base->insertRegistroColegiados($folio);
+				}
+			
+				$row = 'f_presentacion';
+				$mensaje = 'Se recibio El caso para seguimiento en la Unidad';
+				break;
+			default:
+				# code...
+				break;
+		}
+
+		$this->m_base->insertar_cron($folio,$row, $fecha);
+
+
+
+		/*$this->m_base->asignar_conducta($folio, $conducta);
+
+		if ( $this->db->affected_rows() == 1 ) {
+
+			$conductaText = $this->m_base->obt_nombre_conducta($conducta);			
+			$seguimiento = array(
+						'registro'		=> $folio,
+						'oficio' 		=>	'',
+						'escribiente' 	=> $this->session->userdata('codigo'),
+						'dependencia' 	=> $dependencia,
+						'fecha'			=> $this->m_ticket->fecha_actual(),
+						'hora' 			=> $this->m_ticket->hora_actual(),
+						'seguimiento' 	=> 'Se dictamino que la conducta fue: <b> '. $conductaText->nombre. ' </b>',
+						'fecha_seguimiento' => $this->m_ticket->fecha_actual(),
+						);
+
+			$this->m_base->insertar_seguimiento($seguimiento);*/
+			echo json_encode($folio);
+		//}
+		
+
+	}
+
 	function asignar_conducta()
 	{
 		$folio = $_POST['folio'];
 		$conducta = $_POST['conducta'];
 		$dependencia = $_POST['dependencia'];
-		$escribiente = $this->session->userdata('codigo');
 
 		$this->m_base->asignar_conducta($folio, $conducta);
 
+		if ( $this->db->affected_rows() == 1 ) {
 
-		echo json_encode($this->db->affected_rows());
+			$conductaText = $this->m_base->obt_nombre_conducta($conducta);			
+			$seguimiento = array(
+						'registro'		=> $folio,
+						'oficio' 		=>	'',
+						'escribiente' 	=> $this->session->userdata('codigo'),
+						'dependencia' 	=> $dependencia,
+						'fecha'			=> $this->m_ticket->fecha_actual(),
+						'hora' 			=> $this->m_ticket->hora_actual(),
+						'seguimiento' 	=> 'Se dictamino que la conducta fue: <b> '. $conductaText->nombre. ' </b>',
+						'fecha_seguimiento' => $this->m_ticket->fecha_actual(),
+						);
+
+			$this->m_base->insertar_seguimiento($seguimiento);
+			echo json_encode(1);
+		}
+		
 
 	}
 
