@@ -377,8 +377,15 @@
                             <br><br>
                         </div>
                         <div class="col-md-6">
-                            <h4>Historial:</h4>
-                         </div>
+                           <!-- <h4>Historial:</h4> <br>
+                            <p><b>Fecha de presentacion: </b> <?=$histCol->f_presentacion?></p>
+                            <p><b>Fecha de Acta Circunstanciada: </b> <?=$histCol->f_circunstanciada?> </p>
+                            <p><b>Fecha de Citatorio: </b> <?=$histCol->f_citatorio?> </p>
+                            <p><b>Fecha de Acta Administrativa:</b> <?=$histCol->f_administrativa?> </p>
+                            <p><b>Fecha de Resolución: </b> <?=$histCol->f_resolucion?></p>
+                            <p><b>Fecha de Notificación:</b> <?=$histCol->f_notificacion?> </p>
+                            -->
+                        </div>
 
                     </div>
 
@@ -862,6 +869,8 @@
       url: "<?=base_url()?>index.php?/base/seguimientoCron",
       data: formulario,
         }).done(function(respuesta){
+            recargaColegiados();
+            recargaGeneral();
             console.log(respuesta);
            // $("#alertaP").fadeIn(500);
             //$('#alertaP').html(respuesta.mensaje);

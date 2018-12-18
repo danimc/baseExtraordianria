@@ -52,6 +52,15 @@ class m_base extends CI_Model {
         return $this->db->get('b_seguimiento_colegiados')->num_rows();
     }
 
+    function formato($forma)
+    {
+        $qry = '';
+
+        $qry = "SELECT nombre FROM b_cat_formatos WHERE id = $forma";
+
+        return $this->db->query($qry)->row();
+    }
+
     function insertRegistroColegiados($folio)
     {
         $this->registro = $folio;
@@ -59,6 +68,14 @@ class m_base extends CI_Model {
        /* $id = $this->db->insert_id();
         $this->db->close();*/
     }
+
+    function obt_histoCol($folio)
+    {
+        $this->db->where('registro', $folio);
+
+        return $this->db->get('b_seguimiento_colegiados')->row();
+    }
+
 
     function insertar_cron( $folio, $row, $fecha)
     {

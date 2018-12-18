@@ -124,7 +124,7 @@ class Base extends CI_Controller {
 		$datos['dependencia'] = $dependencia;
 		$datos['folio'] = $folio;
 		$datos['registro'] = $this->m_base->seguimiento_registro_un_concepto($folio);
-		//$datos['centros'] = $this->m_base->obt_centros();
+		$datos['histCol'] = $this->m_base->obt_histoCol($id);
 		//$datos['centros'] = $this->m_base->obt_centros();
 		//$datos['sujetos'] = $this->m_base->obt_sujetos();
 	//	$datos['conceptos'] = $this->m_base->obt_conceptos();
@@ -296,6 +296,11 @@ class Base extends CI_Controller {
 		$row = '';
 		$mensaje = '';
 
+		if ($forma != '') {
+			$formato = $this->m_base->formato($forma);
+		}
+		
+
 		switch ($seguimiento) {
 			case 1:
 				if ($this->m_base->obt_registro_seg_colegiados($folio) == 0) {
@@ -304,37 +309,49 @@ class Base extends CI_Controller {
 				}
 			
 				$row = 'f_presentacion';
-				$mensaje = 'Se recibio El caso para seguimiento en la Unidad';
+				$mensaje = '<b>Se recibió el caso para seguimiento en la Unidad </b>';
 				break;
+			case 2:
+				$row = 'f_circunstanciada';
+				$mensaje = '<b>Se generó el Acta circunstanciada</b>';
+				break;
+			case 3:
+				$row = 'f_citatorio';
+				$mensaje = '<b>Se mando el citatorio por medio ' . $formato->nombre . '</b>';
+				break;
+			case 4:
+				$row = 'f_administrativa';
+				$mensaje = '<b>Se levanto el Acta Administrativa</b>';
+				break;
+			case 5:
+				$row = 'f_resolucion';
+				$mensaje = '<b>Se tomó la Resolución</b>';
+				break;
+			case 6:
+				$row = 'f_notificacion';
+				$mensaje = '<b>Se notifico por medio ' . $formato->nombre . '</b>';
+				break;				
+
 			default:
-				# code...
+				echo 'Error';
 				break;
 		}
 
 		$this->m_base->insertar_cron($folio,$row, $fecha);
-
-
-
-		/*$this->m_base->asignar_conducta($folio, $conducta);
-
-		if ( $this->db->affected_rows() == 1 ) {
-
-			$conductaText = $this->m_base->obt_nombre_conducta($conducta);			
-			$seguimiento = array(
+		$seguimiento = array(
 						'registro'		=> $folio,
 						'oficio' 		=>	'',
 						'escribiente' 	=> $this->session->userdata('codigo'),
 						'dependencia' 	=> $dependencia,
 						'fecha'			=> $this->m_ticket->fecha_actual(),
 						'hora' 			=> $this->m_ticket->hora_actual(),
-						'seguimiento' 	=> 'Se dictamino que la conducta fue: <b> '. $conductaText->nombre. ' </b>',
-						'fecha_seguimiento' => $this->m_ticket->fecha_actual(),
+						'seguimiento' 	=> $mensaje,
+						'fecha_seguimiento' => $fecha,
 						);
 
-			$this->m_base->insertar_seguimiento($seguimiento);*/
-			echo json_encode($folio);
-		//}
+		$this->m_base->insertar_seguimiento($seguimiento);
 		
+		echo json_encode($folio);
 
 	}
 
